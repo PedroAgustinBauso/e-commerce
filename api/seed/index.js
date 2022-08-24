@@ -76,49 +76,59 @@ Categories.bulkCreate([
   },
 ]);
 
-Product.bulkCreate(
-  Product.bulkCreate([
-    {
-      name: "Pack Andes Ipa Pack x5 475ml",
-      price: 1200,
-      description: "Pack de Cerveza Antes Ipa ipa ipa ipa ipa",
-      stock: 20,
-      brand: "Andes",
-    },
-    {
-      name: "Fernet Branca 710ml",
-      price: 1200,
-      description: "Fernet fernet brranca branca branca",
-      stock: 20,
-      brand: "Branca",
-    },
-    {
-      name: "Fernet Branca 950ml",
-      price: 1900,
-      description: "Fernet fernet brranca branca branca",
-      stock: 20,
-      brand: "Branca",
-    },
-    {
-      name: "Botella Patagonia 24.7 750ml",
-      price: 450,
-      description: "Cerveza Patagonia 24.7 750ml por Unidad",
-      stock: 20,
-      brand: "Patagonia",
-    },
-    {
-      name: "Botella Gancia",
-      price: 1300,
-      description: "Botella Gancia Botella Gancia Botella Gancia",
-      stock: 2,
-      brand: "Gancia",
-    },
-    {
-      name: "Jack Daniels",
-      price: 5000,
-      description: "Botella Jack Daniels Jack Daniels",
-      stock: 8,
-      brand: "Jack Daniels",
-    },
-  ])
-);
+Product.bulkCreate([
+  {
+    name: "Pack Andes Ipa Pack x5 475ml",
+    price: 1200,
+    description:
+      "La Andes IPA Andina es una cerveza estilo IPA, valga la redundancia, de la escuela Inglesa. Como seguramente usted sabe, este estilo de cerveza se caracteriza por el amargor que le otorga su alto contenido de lúpulo.",
+    stock: 20,
+    brand: "Andes",
+    imagen:
+      "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/andes_ipa_1000x2048_f9c0fb04-5564-499b-b7df-3e65e3bb9c9c_grande1-834bfca25342359ea215914720299753-480-0.png",
+  },
+  {
+    name: "Fernet Branca 710ml",
+    price: 1200,
+    description:
+      "Producto del ingenio y la visión de Bernandino Branca, nace en 1845 una bebida única para la época. Ella es resultado de la combinación de hierbas, cortezas, raíces, frutos y cuidado artesanal, a la que su creador bautizó con el nombre de fernet. Así nació Fernet Branca.",
+    stock: 20,
+    brand: "Branca",
+    imagen:
+      "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/fernet-branca-1l1-22cf1c861e96c6bda515627818456812-480-0.jpg",
+  },
+  {
+    name: "Fernet Branca 950ml",
+    price: 1900,
+    description: "Fernet fernet brranca branca branca",
+    stock: 20,
+    brand: "Branca",
+  },
+  {
+    name: "Botella Patagonia 24.7 750ml",
+    price: 450,
+    description:
+      "Nuestra 24.7 es una Session IPA, de amargor marcado otorgado por una combinación de lúpulos patagónicos. Con intenso aroma cítrico y frutal. El agregado de sauco y miel patagónicos balancean el amargor del lúpulo, aportando cierta acidez y final seco.",
+    stock: 20,
+    brand: "Patagonia",
+    imagen:
+      "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/333611-43fba1b86f3b4c68d415671052502457-640-01-45fd310cca4964c3bd15918297820259-640-0.jpg",
+  },
+  {
+    name: "Botella Gancia",
+    price: 1300,
+    description: "Botella Gancia Botella Gancia Botella Gancia",
+    stock: 2,
+    brand: "Gancia",
+  },
+  {
+    name: "Jack Daniels",
+    price: 8900,
+    description:
+      "El color, cuerpo y sabor característico del Jack Daniels se debe a un minucioso proceso que lo hace único.",
+    stock: 8,
+    brand: "Jack Daniels",
+    imagen:
+      "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/unadjustednonraw_thumb_9bbb1-d5a6a59c05a65bb59016244773908078-480-0.jpg",
+  },
+]);
