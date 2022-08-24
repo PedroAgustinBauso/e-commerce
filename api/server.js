@@ -1,12 +1,11 @@
 const express = require("express");
 const db = require("./db");
 const routes = require("./routes");
-
 const morgan = require("morgan");
 
 var app = express();
-
 require("./models");
+
 app.use(morgan("dev"));
 app.use(express.json());
 
