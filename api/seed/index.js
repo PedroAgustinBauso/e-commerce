@@ -84,7 +84,7 @@ Product.bulkCreate([
       "La Andes IPA Andina es una cerveza estilo IPA, valga la redundancia, de la escuela Inglesa. Como seguramente usted sabe, este estilo de cerveza se caracteriza por el amargor que le otorga su alto contenido de lúpulo.",
     stock: 20,
     brand: "Andes",
-    imagen:
+    images:
       "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/andes_ipa_1000x2048_f9c0fb04-5564-499b-b7df-3e65e3bb9c9c_grande1-834bfca25342359ea215914720299753-480-0.png",
   },
   {
@@ -94,7 +94,7 @@ Product.bulkCreate([
       "Producto del ingenio y la visión de Bernandino Branca, nace en 1845 una bebida única para la época. Ella es resultado de la combinación de hierbas, cortezas, raíces, frutos y cuidado artesanal, a la que su creador bautizó con el nombre de fernet. Así nació Fernet Branca.",
     stock: 20,
     brand: "Branca",
-    imagen:
+    images:
       "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/fernet-branca-1l1-22cf1c861e96c6bda515627818456812-480-0.jpg",
   },
   {
@@ -111,7 +111,7 @@ Product.bulkCreate([
       "Nuestra 24.7 es una Session IPA, de amargor marcado otorgado por una combinación de lúpulos patagónicos. Con intenso aroma cítrico y frutal. El agregado de sauco y miel patagónicos balancean el amargor del lúpulo, aportando cierta acidez y final seco.",
     stock: 20,
     brand: "Patagonia",
-    imagen:
+    images:
       "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/333611-43fba1b86f3b4c68d415671052502457-640-01-45fd310cca4964c3bd15918297820259-640-0.jpg",
   },
   {
@@ -128,7 +128,7 @@ Product.bulkCreate([
       "El color, cuerpo y sabor característico del Jack Daniels se debe a un minucioso proceso que lo hace único.",
     stock: 8,
     brand: "Jack Daniels",
-    imagen:
+    images:
       "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/unadjustednonraw_thumb_9bbb1-d5a6a59c05a65bb59016244773908078-480-0.jpg",
   },
 ]);
