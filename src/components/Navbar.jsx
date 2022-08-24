@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -10,10 +11,26 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-
-const leftDesktopPages = ["Vinos", "Cervezas", "Otros"];
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const leftDesktopPages = [
+    {
+      page: "Vinos",
+      onClickHandler: function () {
+        navigate("/vinos");
+      },
+    },
+    {
+      page: "Cervezas",
+      onClickHandler: function () {
+        navigate("/cervezas");
+      },
+    },
+  ];
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -75,9 +92,9 @@ const Navbar = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {leftDesktopPages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {leftDesktopPages.map((item) => (
+                <MenuItem key={item.page} onClick={item.onClickHandler}>
+                  <Typography textAlign="center">{item.page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -102,20 +119,22 @@ const Navbar = () => {
             BBT-TODO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {leftDesktopPages.map((page) => (
+            {leftDesktopPages.map((item) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={item.page}
+                onClick={item.onClickHandler}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                {page}
+                {item.page}
               </Button>
             ))}
           </Box>
 
           <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "flex" } }}>
             <MenuItem onClick={handleCloseNavMenu}>
-              <Typography textAlign="center">Login</Typography>
+              <Link to="/login" style={{ textDecoration: "none" }}>
+                <Typography textAlign="center">Login</Typography>
+              </Link>
             </MenuItem>
             <MenuItem onClick={handleCloseNavMenu}>
               <ShoppingCartIcon />
