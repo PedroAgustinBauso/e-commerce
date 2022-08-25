@@ -51,28 +51,32 @@ User.bulkCreate([
 
 Categories.bulkCreate([
   {
-    name: "vinos",
+    name: "Vinos",
   },
   {
-    name: "cervezas",
+    name: "Cervezas",
   },
   {
-    name: "espumantes",
+    name: "Espumantes",
   },
   {
-    name: "licores",
+    name: "Licores",
   },
   {
-    name: "gin",
+    name: "Gin",
   },
   {
-    name: "vodka",
+    name: "Vodka",
   },
   {
-    name: "ron",
+    name: "Ron",
   },
   {
-    name: "aperitivos",
+    name: "Aperitivos",
+  },
+  { name: "Whisky" },
+  {
+    name: "Otros",
   },
   {
     name: "otros",
@@ -93,7 +97,8 @@ Product.bulkCreate([
   {
     name: "Paulaner Weissbier Lata 500ml",
     price: 790,
-    description: "Es considerada la cerveza de trigo número 1 en Alemania y una de las favoritas del mundo. Una obra maestra elaborada por expertos, mediante una técnica perfeccionada por los maestros cerveceros de Paulaner llamada suspensión de levadura, que da como resultado un aspecto uniforme, ligeramente turbio, una calidad constante y un sabor perfecto.",
+    description:
+      "Es considerada la cerveza de trigo número 1 en Alemania y una de las favoritas del mundo. Una obra maestra elaborada por expertos, mediante una técnica perfeccionada por los maestros cerveceros de Paulaner llamada suspensión de levadura, que da como resultado un aspecto uniforme, ligeramente turbio, una calidad constante y un sabor perfecto.",
     stock: 20,
     brand: "Paulaner",
     images:
@@ -102,7 +107,8 @@ Product.bulkCreate([
   {
     name: "Stella Artois Lata 269ml",
     price: 200,
-    description: "Es una cerveza muy equilibrada de un color dorado brillante. En esta cerveza predominan moderadas notas a frutas blancas y de cereal que resaltan levemente sobre el aroma herbal del lúpulo Saaz. En boca presenta una sensación suave, ligera de amargo y con efecto refrescante. La Stella Artois es ideal para acompañar quesos, pastas y carnes con salas de cítricos o ensaladas afrutadas.",
+    description:
+      "Es una cerveza muy equilibrada de un color dorado brillante. En esta cerveza predominan moderadas notas a frutas blancas y de cereal que resaltan levemente sobre el aroma herbal del lúpulo Saaz. En boca presenta una sensación suave, ligera de amargo y con efecto refrescante. La Stella Artois es ideal para acompañar quesos, pastas y carnes con salas de cítricos o ensaladas afrutadas.",
     stock: 20,
     brand: "Stella Artois",
     images:
@@ -169,7 +175,8 @@ Product.bulkCreate([
   {
     name: "Zaha Malbec",
     price: 3000,
-    description: "Color Rojo profundo con tintes violáceos. Aromas a Frutas rojas, florales y vegetales bien amalgamadas.",
+    description:
+      "Color Rojo profundo con tintes violáceos. Aromas a Frutas rojas, florales y vegetales bien amalgamadas.",
     stock: 5,
     brand: "Bodega Teho",
     images:

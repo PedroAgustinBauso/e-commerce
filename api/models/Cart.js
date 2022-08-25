@@ -1,24 +1,29 @@
-const {DataTypes, Model} = require('sequelize')
-const db = require('../db')
+const { DataTypes, Model } = require("sequelize");
+const db = require("../db");
 
-class Cart extends Model {}
+class Cart extends Model {
+  handleStock(productId) {
+    return this.products.find((product) => product.id === productId);
+  }
+}
 
-Cart.init({
+Cart.init(
+  {
     product_amount: {
-        type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
     },
     total: {
-        type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
     },
     shipment: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
     },
-    shipment_address:{
-        type: DataTypes.STRING
-    }
-
-},
-{sequelize:db, modelName:'cart'})
+    shipment_address: {
+      type: DataTypes.STRING,
+    },
+  },
+  { sequelize: db, modelName: "cart" }
+);
 
 module.exports = Cart;
