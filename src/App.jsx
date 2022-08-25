@@ -1,13 +1,15 @@
-import React from "react";
 import Navbar from "./components/Navbar";
-import SingleProductoView from "./components/SingleProduct";
+import React from "react";
+import Login from "./views/Login";
+import SingleProductView from "./components/SingleProduct";
 
 function App() {
   return (
-    <>
+    <div>
       <Navbar />
-      <SingleProductoView />
-    </>
+      <Login />
+      <SingleProductView />
+    </div>
   );
 }
 
