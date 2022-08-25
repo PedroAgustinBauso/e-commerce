@@ -1,10 +1,10 @@
 import * as React from "react";
+import { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import ButtonBase from "@mui/material/ButtonBase";
-
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
@@ -20,12 +20,22 @@ const Img = styled("img")({
 });
 
 export default function CartItem() {
+  const precioUnitario = 1000;
+ // setCantidad = () => {precio * cantidad}
+  const [cantidad, setCantidad] = useState(1);
+
+  const handleSelectChange = (e) => {
+    setCantidad(e.target.value)
+  };
+
+
   return (
     <Paper
       sx={{
         p: 2,
         margin: "auto",
-        maxWidth: 500,
+        marginTop: 3,
+        maxWidth: 700,
         flexGrow: 1,
         backgroundColor: (theme) =>
           theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -58,23 +68,28 @@ export default function CartItem() {
           </Grid>
           <Grid item>
             <Typography variant="subtitle1" component="div">
-              $1000
+              Precio unitario.....${precioUnitario}
+              <br/>
+              <br/>
+              Precio...................${cantidad * precioUnitario}
             </Typography>
           </Grid>
         </Grid>
 
-        <Box sx={{ minWidth: 10, maxWidth: 50 }} className={styles.cantidad}>
-              <FormControl>
+            <Box sx={{ minWidth: 10, maxWidth: 50 }} className={styles.cantidad} onChange = {handleSelectChange}>
+              <FormControl >
                 <InputLabel variant="standard" htmlFor="uncontrolled-native">
                   Cantidad
                 </InputLabel>
                 <NativeSelect
-                  defaultValue={1}
-                  inputProps={{
+                  defaultValue={cantidad}
+/*                   inputProps={{
                     name: "age",
                     id: "uncontrolled-native",
-                  }}
+                  }} */
+                  
                 >
+
                   <option value={1}>1</option>
                   <option value={2}>2</option>
                   <option value={3}>3</option>

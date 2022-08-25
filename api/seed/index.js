@@ -185,3 +185,5 @@ Product.bulkCreate([
       "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/tardia_mrkvfd1-70f19628a2226ecc1115918287459152-640-0.jpg",
   },
 ]);
+
+
