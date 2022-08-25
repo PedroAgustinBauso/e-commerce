@@ -1,19 +1,16 @@
 const Product = require("./Product");
 const User = require("./User");
-const Ticket = require("./Ticket");
 const Cart = require("./Cart");
 const Categories = require("./Categories");
+const CartItem = require("./CartItem");
 
 Cart.belongsTo(User);
 User.hasOne(Cart);
 
-Cart.hasMany(Product);
-Product.belongsTo(Cart);
+Cart.hasMany(CartItem);
+CartItem.belongsTo(Cart);
 
 Product.hasMany(Categories);
 Categories.belongsTo(Product);
 
-User.hasMany(Ticket, { as: "tickets" });
-Ticket.belongsTo(User);
-
-module.exports = { Product, User, Ticket, Cart, Categories };
+module.exports = { Product, User, Cart, Categories, CartItem };

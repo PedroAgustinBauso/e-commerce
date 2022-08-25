@@ -51,28 +51,32 @@ User.bulkCreate([
 
 Categories.bulkCreate([
   {
-    name: "vinos",
+    name: "Vinos",
   },
   {
-    name: "cervezas",
+    name: "Cervezas",
   },
   {
-    name: "espumantes",
+    name: "Espumantes",
   },
   {
-    name: "licores",
+    name: "Licores",
   },
   {
-    name: "gin",
+    name: "Gin",
   },
   {
-    name: "vodka",
+    name: "Vodka",
   },
   {
-    name: "ron",
+    name: "Ron",
   },
   {
-    name: "aperitivos",
+    name: "Aperitivos",
+  },
+  { name: "Whisky" },
+  {
+    name: "Otros",
   },
 ]);
 
@@ -85,7 +89,27 @@ Product.bulkCreate([
     stock: 20,
     brand: "Andes",
     images:
-      "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/andes_ipa_1000x2048_f9c0fb04-5564-499b-b7df-3e65e3bb9c9c_grande1-834bfca25342359ea215914720299753-480-0.png",
+      "https://d3ugyf2ht6aenh.cloudfront.net/stores/001/476/675/products/and1-2c855b2a7f4839a46e16096851750218-640-0.jpg",
+  },
+  {
+    name: "Paulaner Weissbier Lata 500ml",
+    price: 790,
+    description:
+      "Es considerada la cerveza de trigo número 1 en Alemania y una de las favoritas del mundo. Una obra maestra elaborada por expertos, mediante una técnica perfeccionada por los maestros cerveceros de Paulaner llamada suspensión de levadura, que da como resultado un aspecto uniforme, ligeramente turbio, una calidad constante y un sabor perfecto.",
+    stock: 20,
+    brand: "Paulaner",
+    images:
+      "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/3300701-f3b7aa6eddc7d781f915755587555671-640-01-5b40aabc2ddc2f587915918300349161-640-0.jpg",
+  },
+  {
+    name: "Stella Artois Lata 269ml",
+    price: 200,
+    description:
+      "Es una cerveza muy equilibrada de un color dorado brillante. En esta cerveza predominan moderadas notas a frutas blancas y de cereal que resaltan levemente sobre el aroma herbal del lúpulo Saaz. En boca presenta una sensación suave, ligera de amargo y con efecto refrescante. La Stella Artois es ideal para acompañar quesos, pastas y carnes con salas de cítricos o ensaladas afrutadas.",
+    stock: 20,
+    brand: "Stella Artois",
+    images:
+      "https://cdn.shopify.com/s/files/1/0254/2947/5433/products/cerveza-stella-artois-belgium-269_C-siempreencasa_500x.png?v=1637180550?nocache=0.5602055357686924",
   },
   {
     name: "Fernet Branca 710ml",
@@ -95,14 +119,16 @@ Product.bulkCreate([
     stock: 20,
     brand: "Branca",
     images:
-      "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/fernet-branca-1l1-22cf1c861e96c6bda515627818456812-480-0.jpg",
+      "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/fernet-brancamenta-750ml1-4cd7f4771af031369a15627817288255-480-0.jpg",
   },
   {
-    name: "Fernet Branca 950ml",
+    name: "Fernet Branca 1L",
     price: 1900,
     description: "Fernet fernet brranca branca branca",
     stock: 20,
     brand: "Branca",
+    images:
+      "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/fernet-branca-1l1-22cf1c861e96c6bda515627818456812-480-0.jpg",
   },
   {
     name: "Botella Patagonia 24.7 750ml",
@@ -120,6 +146,8 @@ Product.bulkCreate([
     description: "Botella Gancia Botella Gancia Botella Gancia",
     stock: 2,
     brand: "Gancia",
+    images:
+      "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/gancia-950ml1-6ccf34584bd8855e3215627816837011-480-0.jpg",
   },
   {
     name: "Jack Daniels",
@@ -130,5 +158,34 @@ Product.bulkCreate([
     brand: "Jack Daniels",
     images:
       "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/unadjustednonraw_thumb_9bbb1-d5a6a59c05a65bb59016244773908078-480-0.jpg",
+  },
+  {
+    name: "Mastrantonio 63 Petit Verdot",
+    price: 2500,
+    description:
+      "Color Rojo profundo con tintes grante. Aromas a Frutas rojas, especias y tostados intensas pero elegantes.Entrada de boca seco, se percibe un vino complejo y elegante, con taninos dulces y rugosos con un cuerpo sedosos y de buena acidez.",
+    stock: 10,
+    brand: "Bodega Familia Mastrantonio",
+    images:
+      "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/mastrantonio-63-premium-petit-verdot-750ml1-f93c993493f647fdc516573816053885-480-0.jpg",
+  },
+  {
+    name: "Zaha Malbec",
+    price: 3000,
+    description:
+      "Color Rojo profundo con tintes violáceos. Aromas a Frutas rojas, florales y vegetales bien amalgamadas.",
+    stock: 5,
+    brand: "Bodega Teho",
+    images:
+      "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/zaha-malbec1-b006de289dfcd8c3fa16573815230668-640-0.png",
+  },
+  {
+    name: "Norton Cosecha Tardía",
+    price: 700,
+    description: "Ideal para aquellos que quieren incursionar en los vinos.",
+    stock: 5,
+    brand: "Bodega Norton",
+    images:
+      "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/tardia_mrkvfd1-70f19628a2226ecc1115918287459152-640-0.jpg",
   },
 ]);
