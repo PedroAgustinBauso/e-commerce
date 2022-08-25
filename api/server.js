@@ -2,12 +2,20 @@ const express = require("express");
 const db = require("./db");
 const routes = require("./routes");
 const morgan = require("morgan");
+const cors = require("cors")
 
 var app = express();
 require("./models");
 
 app.use(morgan("dev"));
 app.use(express.json());
+
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
 
 app.use("/api", routes);
 
