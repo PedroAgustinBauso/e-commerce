@@ -4,7 +4,6 @@ const { generateToken } = require("../config/tokens");
 const { validateAuth } = require("../middlewares/auth");
 const { User, Cart } = require("../models");
 const { Op } = require("sequelize");
-const { ErrorSharp } = require("@mui/icons-material");
 
 //ruta para registro
 router.post("/register", (req, res) => {
@@ -73,6 +72,17 @@ router.put("/admin/:userId", (req, res) => {
   );
 });
 
+//togglear el estado is_admin, esta ruta no la pide pero capaz sirve:
+router.put("/admin/toggle/:userId", (req, res) => {
+  User.findByPk(req.params.userId)
+    .then((user) => {
+      user.update({ is_admin: user.toggleAdmin() });
+    })
+    .then(() => {
+      res.sendStatus(202);
+    });
+});
+
 //eliminar un usuario:
 /* router.delete("/admin/:userId", (req, res) => {
   User.destroy({ where: { id: req.params.userId } })
@@ -83,22 +93,39 @@ router.put("/admin/:userId", (req, res) => {
     .catch((err) => console.log(err));
 }); */
 
+//se borra el campo userId pero no se borra el cart, revisar
 router.delete("/admin/:userId", (req, res) => {
   Promise.all([
     Cart.destroy({ where: { userId: req.params.userId } }),
     User.destroy({ where: { id: req.params.userId } }),
   ])
     .then(() => {
-      res.sendStatus(202);
+      res.sendStatus(204);
     })
     .catch((err) => console.log(err));
 });
 
-//ver todos los usuarios:
+//ver todos los usuarios, tiene una condicion que evalua si es admin o no, se le puede sacar y evaluar desde el front:
 router.get("/admin/:adminId", (req, res) => {
-  User.findAll({ where: { id: { [Op.not]: req.params.adminId } } })
-    .then((users) => res.send(users))
+  User.findByPk(req.params.adminId)
+    .then((user) => {
+      if (user.is_admin) {
+        User.findAll({ where: { id: { [Op.not]: req.params.adminId } } }).then(
+          (users) => res.send(users)
+        );
+      } else {
+        res.sendStatus(404);
+      }
+    })
     .catch((err) => console.log(err));
+});
+
+/******** RUTAS DE PRUEBA ********/
+
+router.get("/:userId", (req, res) => {
+  User.findByPk(req.params.userId, { include: { model: Cart } }).then((user) =>
+    res.send(user)
+  );
 });
 
 module.exports = router;
