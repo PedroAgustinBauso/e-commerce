@@ -12,5 +12,4 @@ Product.belongsTo(Cart);
 Product.hasMany(Categories);
 Categories.belongsTo(Product);
 
-
 module.exports = { Product, User, Cart, Categories };
