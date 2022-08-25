@@ -3,6 +3,13 @@ const db = require("../db");
 const bcrypt = require("bcrypt");
 
 class User extends Model {
+  //se puede hacer un metodo con this.cart y automaticamente linkea los carritos?
+
+  toggleAdmin() {
+    const isAdmin = this.dataValues.is_admin;
+    return !isAdmin;
+  }
+
   hash(password, salt) {
     return bcrypt.hash(password, salt);
   }
@@ -69,5 +76,7 @@ User.beforeCreate((user) => {
     user.password = hash;
   });
 });
+
+//ver si puedo agregar otro hook para algo?
 
 module.exports = User;
