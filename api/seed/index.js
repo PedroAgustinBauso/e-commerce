@@ -51,41 +51,51 @@ User.bulkCreate([
 
 Categories.bulkCreate([
   {
+    id: 1,
     name: "Vinos",
   },
   {
+    id: 2,
     name: "Cervezas",
   },
   {
+    id: 3,
     name: "Espumantes",
   },
   {
+    id: 4,
     name: "Licores",
   },
   {
+    id: 5,
     name: "Gin",
   },
   {
+    id: 6,
     name: "Vodka",
   },
   {
+    id: 7,
     name: "Ron",
   },
   {
+    id: 8,
     name: "Aperitivos",
   },
-  { name: "Whisky" },
+  { 
+    id: 9,
+    name: "Whisky" 
+  },
   {
+    id: 10,
     name: "Otros",
-  },
-  {
-    name: "otros",
-  },
+  }
 ]);
 
 Product.bulkCreate([
   {
     name: "Pack Andes Ipa Pack x5 475ml",
+    categoryId: 2,
     price: 1200,
     description:
       "La Andes IPA Andina es una cerveza estilo IPA, valga la redundancia, de la escuela Inglesa. Como seguramente usted sabe, este estilo de cerveza se caracteriza por el amargor que le otorga su alto contenido de lúpulo.",
@@ -96,6 +106,7 @@ Product.bulkCreate([
   },
   {
     name: "Paulaner Weissbier Lata 500ml",
+    categoryId: 2,
     price: 790,
     description:
       "Es considerada la cerveza de trigo número 1 en Alemania y una de las favoritas del mundo. Una obra maestra elaborada por expertos, mediante una técnica perfeccionada por los maestros cerveceros de Paulaner llamada suspensión de levadura, que da como resultado un aspecto uniforme, ligeramente turbio, una calidad constante y un sabor perfecto.",
@@ -106,6 +117,7 @@ Product.bulkCreate([
   },
   {
     name: "Stella Artois Lata 269ml",
+    categoryId: 2,
     price: 200,
     description:
       "Es una cerveza muy equilibrada de un color dorado brillante. En esta cerveza predominan moderadas notas a frutas blancas y de cereal que resaltan levemente sobre el aroma herbal del lúpulo Saaz. En boca presenta una sensación suave, ligera de amargo y con efecto refrescante. La Stella Artois es ideal para acompañar quesos, pastas y carnes con salas de cítricos o ensaladas afrutadas.",
@@ -116,6 +128,7 @@ Product.bulkCreate([
   },
   {
     name: "Fernet Branca 710ml",
+    categoryId: 10,
     price: 1200,
     description:
       "Producto del ingenio y la visión de Bernandino Branca, nace en 1845 una bebida única para la época. Ella es resultado de la combinación de hierbas, cortezas, raíces, frutos y cuidado artesanal, a la que su creador bautizó con el nombre de fernet. Así nació Fernet Branca.",
@@ -126,6 +139,7 @@ Product.bulkCreate([
   },
   {
     name: "Fernet Branca 1L",
+    categoryId: 10,
     price: 1900,
     description: "Fernet fernet brranca branca branca",
     stock: 20,
@@ -135,6 +149,7 @@ Product.bulkCreate([
   },
   {
     name: "Botella Patagonia 24.7 750ml",
+    categoryId: 2,
     price: 450,
     description:
       "Nuestra 24.7 es una Session IPA, de amargor marcado otorgado por una combinación de lúpulos patagónicos. Con intenso aroma cítrico y frutal. El agregado de sauco y miel patagónicos balancean el amargor del lúpulo, aportando cierta acidez y final seco.",
@@ -145,6 +160,7 @@ Product.bulkCreate([
   },
   {
     name: "Botella Gancia",
+    categoryId: 8,
     price: 1300,
     description: "Botella Gancia Botella Gancia Botella Gancia",
     stock: 2,
@@ -154,6 +170,7 @@ Product.bulkCreate([
   },
   {
     name: "Jack Daniels",
+    categoryId: 10,
     price: 8900,
     description:
       "El color, cuerpo y sabor característico del Jack Daniels se debe a un minucioso proceso que lo hace único.",
@@ -164,6 +181,7 @@ Product.bulkCreate([
   },
   {
     name: "Mastrantonio 63 Petit Verdot",
+    categoryId: 1,
     price: 2500,
     description:
       "Color Rojo profundo con tintes grante. Aromas a Frutas rojas, especias y tostados intensas pero elegantes.Entrada de boca seco, se percibe un vino complejo y elegante, con taninos dulces y rugosos con un cuerpo sedosos y de buena acidez.",
@@ -174,6 +192,7 @@ Product.bulkCreate([
   },
   {
     name: "Zaha Malbec",
+    categoryId: 1,
     price: 3000,
     description:
       "Color Rojo profundo con tintes violáceos. Aromas a Frutas rojas, florales y vegetales bien amalgamadas.",
@@ -184,6 +203,7 @@ Product.bulkCreate([
   },
   {
     name: "Norton Cosecha Tardía",
+    categoryId: 1,
     price: 700,
     description: "Ideal para aquellos que quieren incursionar en los vinos.",
     stock: 5,

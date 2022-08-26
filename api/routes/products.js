@@ -4,19 +4,45 @@ const router = express.Router();
 const { Product, Categories } = require("../models");
 
 router.get("/", (req, res) => {
-  // if (req.query.categoria) {
-  //     Categorias.findOne({
-  //       where: { nombre: req.query.categoria },
-  //       include: { model: Productos },
-  //     }).then((categoria) => {
-  //       res.send(categoria);
-  //     });
-  //   }
-  //   Productos.findAll().then((productos) => res.send(productos));
-  Product.findAll({ include: Categories }).then((result) => res.send(result));
+  Product.findAll().then((result) => res.send(result));
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:category", (req, res) => {
+
+    Categories.findOne({
+      where: { name: req.params.category },
+      include: { model: Product },
+    }).then((categoria) => {
+      res.send(categoria.products);
+    });
+
+  // console.log("entre al get");
+  // if (req.params.category) {
+  //   console.log("entre por el if de categoria");
+
+  //   Categories.findOne({
+  //     where: { name: req.params.category },
+  //     include: { model: Product },
+  //   }).then((categoria) => {
+  //     res.send(categoria);
+  //   });
+  // } else {
+  //   Product.findAll().then((productos) => res.send(productos));
+  // }
+
+  //Product.findAll({ include: Categories }).then((result) => res.send(result));
+});
+
+// router.get("/:category", (req, res) => {
+//   Product.findAll({
+//     include: [{
+//       model: Categories,
+//       where: { name:  req.params.category }
+//     }]
+//   }).then((products)=> console.log(products));
+// });
+
+router.get("/single/:id", (req, res) => {
   const id = req.params.id;
   Product.findByPk(id).then((result) => res.send(result));
 });

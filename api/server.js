@@ -26,5 +26,5 @@ app.get("/", (req, res) => {
 //app.listen(process.env.PORT || 3001)
 
 db.sync({ force: false }).then(() => {
-  app.listen(3001, () => console.log(`server listenning on port 3001`));
+  app.listen(3001, () => console.log(`server listening on port 3001`));
 });
