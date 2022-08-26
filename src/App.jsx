@@ -6,7 +6,7 @@ import { Routes, Route } from "react-router-dom";
 // import Signup from "./views/Signup";
 import Grid from "./components/Grid";
 import Cart from "./views/Cart";
-import CartItem from "./components/CartItem";
+//import CartItem from "./components/CartItem";
 
 function App() {
   return (
@@ -14,8 +14,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Grid category="none" />} />
-        <Route path="/vinos" element={<Grid category="vinos" />} />
-        <Route path="/cervezas" element={<Grid category="cervezas" />} />
+        <Route path="/vinos" element={<Grid category="Vinos" />} />
+        <Route path="/cervezas" element={<Grid category="Cervezas" />} />
         <Route path="/login" element={<Login />} />
         {/* <Route path="/signup" element={<Signup />} /> */}
         <Route path="/product/:id" element={<SingleProductView />} />

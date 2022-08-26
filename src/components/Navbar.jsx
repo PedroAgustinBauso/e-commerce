@@ -120,6 +120,7 @@ const Navbar = () => {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {leftDesktopPages.map((item) => (
+              
               <Button
                 key={item.page}
                 onClick={item.onClickHandler}
@@ -127,17 +128,20 @@ const Navbar = () => {
               >
                 {item.page}
               </Button>
+              
             ))}
           </Box>
 
           <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "flex" } }}>
-            <MenuItem onClick={handleCloseNavMenu}>
-              <Link to="/login" style={{ textDecoration: "none" }}>
+            <MenuItem>
+              <Link to="/login" style={{ textDecoration: "none", color:"white" , textTransform:"uppercase" }}>
                 <Typography textAlign="center">Login</Typography>
               </Link>
             </MenuItem>
-            <MenuItem onClick={handleCloseNavMenu}>
+            <MenuItem>
+            <Link to="/cart"  style={{ textDecoration: "none", color:"white"  }}>
               <ShoppingCartIcon />
+            </Link>
             </MenuItem>
           </Box>
         </Toolbar>

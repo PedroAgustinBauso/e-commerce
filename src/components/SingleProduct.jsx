@@ -19,7 +19,7 @@ export default function SingleProductView() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/api/products/${id}`)
+      .get(`http://localhost:3001/api/products/single/${id}`)
       .then((res) => setProduct(res.data));
   }, [id]);
 
