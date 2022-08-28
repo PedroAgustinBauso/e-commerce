@@ -16,21 +16,35 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   const navigate = useNavigate();
 
-  const leftDesktopPages = [
-    {
-      page: "Vinos",
-      onClickHandler: function () {
-        navigate("/vinos");
-      },
-    },
-    {
-      page: "Cervezas",
-      onClickHandler: function () {
-        navigate("/cervezas");
-      },
-    },
+  const categoriesList = [
+    "Vinos",
+    "Cervezas",
+    "Espumantes",
+    "Licores",
+    "Gin",
+    "Vodka",
+    "Ron",
+    "Aperitivos",
+    "Whisky",
+    "Otros",
   ];
 
+  function getCategoryPages() {
+    let categories = []
+    categoriesList.forEach((element) => {
+      categories.push({
+        page: element,
+        onClickHandler: function () {
+          handleCloseCategories();
+          handleCloseNavMenu();
+          navigate(`/${element.toLocaleLowerCase()}`);
+        },
+      });
+    });
+    return categories;
+  }
+
+  /*** Start Hamburger Menu functionality ***/
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -40,6 +54,19 @@ const Navbar = () => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+  /*** End Hamburger Menu functionality ***/
+
+  /*** Start Dropdown categories functionality ***/
+  const [anchorCategoriesDropDown, setAnchorCategoriesDropDown] =
+    React.useState(null);
+  const openCategoriesDropDown = Boolean(anchorCategoriesDropDown);
+  const handleClickCategories = (event) => {
+    setAnchorCategoriesDropDown(event.currentTarget);
+  };
+  const handleCloseCategories = () => {
+    setAnchorCategoriesDropDown(null);
+  };
+  /*** End Dropdown categories functionality ***/
 
   return (
     <AppBar position="static">
@@ -92,7 +119,7 @@ const Navbar = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {leftDesktopPages.map((item) => (
+              {getCategoryPages().map((item) => (
                 <MenuItem key={item.page} onClick={item.onClickHandler}>
                   <Typography textAlign="center">{item.page}</Typography>
                 </MenuItem>
@@ -119,29 +146,53 @@ const Navbar = () => {
             BBT-TODO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {leftDesktopPages.map((item) => (
-              
-              <Button
-                key={item.page}
-                onClick={item.onClickHandler}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {item.page}
-              </Button>
-              
-            ))}
+            <Button
+              id="basic-button"
+              aria-controls={openCategoriesDropDown ? "basic-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={openCategoriesDropDown ? "true" : undefined}
+              onClick={handleClickCategories}
+              style={{ color: "white" }}
+            >
+              Categorías
+            </Button>
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorCategoriesDropDown}
+              open={openCategoriesDropDown}
+              onClose={handleCloseCategories}
+              MenuListProps={{
+                "aria-labelledby": "basic-button",
+              }}
+            >
+              {getCategoryPages().map((item) => (
+                <MenuItem key={item.page} onClick={item.onClickHandler}>
+                  <Typography textAlign="center">{item.page}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
           </Box>
 
           <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "flex" } }}>
             <MenuItem>
-              <Link to="/login" style={{ textDecoration: "none", color:"white" , textTransform:"uppercase" }}>
+              <Link
+                to="/login"
+                style={{
+                  textDecoration: "none",
+                  color: "white",
+                  textTransform: "uppercase",
+                }}
+              >
                 <Typography textAlign="center">Login</Typography>
               </Link>
             </MenuItem>
             <MenuItem>
-            <Link to="/cart"  style={{ textDecoration: "none", color:"white"  }}>
-              <ShoppingCartIcon />
-            </Link>
+              <Link
+                to="/cart"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                <ShoppingCartIcon />
+              </Link>
             </MenuItem>
           </Box>
         </Toolbar>
