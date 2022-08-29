@@ -178,7 +178,11 @@ const Navbar = () => {
             </Menu>
           </Box>
 
-          <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "flex" } }}>
+          
+          {user.name ? (
+            <NavbarUserLogged user={user} />
+          ) : (
+            <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "flex" } }}>
             <MenuItem>
               <Link
                 to="/login"
@@ -191,25 +195,7 @@ const Navbar = () => {
                 <Typography textAlign="center">Login</Typography>
               </Link>
             </MenuItem>
-            <MenuItem>
-              <Link
-                to="/cart"
-                style={{ textDecoration: "none", color: "white" }}
-              >
-                <ShoppingCartIcon />
-              </Link>
-            </MenuItem>
           </Box>
-          {user.name ? (
-            <NavbarUserLogged user={user} />
-          ) : (
-            <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "flex" } }}>
-              <MenuItem onClick={handleCloseNavMenu}>
-                <Link to="/login" style={{ textDecoration: "none" }}>
-                  <Typography textAlign="center">Login</Typography>
-                </Link>
-              </MenuItem>
-            </Box>
           )}
         </Toolbar>
       </Container>

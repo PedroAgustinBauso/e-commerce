@@ -9,7 +9,6 @@ import AlertMessage from "../commons/AlertMessage";
 import {
   Avatar,
   Button,
-  CssBaseline,
   TextField,
   Link,
   Grid,
@@ -54,7 +53,6 @@ export default function Login() {
 
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
       <Box
         sx={{
           marginTop: 8,

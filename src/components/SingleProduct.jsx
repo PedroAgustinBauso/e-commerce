@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Chip from "@mui/material/Chip";
 import Button from "@mui/material/Button";
@@ -31,7 +30,6 @@ export default function SingleProductView() {
     </Typography>
   ) : (
     <>
-      <CssBaseline />
       <Grid
         container
         spacing={1}
