@@ -1,46 +1,33 @@
 const express = require("express");
 const router = express.Router();
+const { Op } = require("sequelize");
 
-const { Product, Categories } = require("../models");
+const { Product, Category } = require("../models");
 
 router.get("/", (req, res) => {
   Product.findAll().then((result) => res.send(result));
 });
 
-router.get("/:category", (req, res) => {
-
-    Categories.findOne({
-      where: { name: req.params.category },
-      include: { model: Product },
-    }).then((categoria) => {
-      res.send(categoria.products);
-    });
-
-  // console.log("entre al get");
-  // if (req.params.category) {
-  //   console.log("entre por el if de categoria");
-
-  //   Categories.findOne({
-  //     where: { name: req.params.category },
-  //     include: { model: Product },
-  //   }).then((categoria) => {
-  //     res.send(categoria);
-  //   });
-  // } else {
-  //   Product.findAll().then((productos) => res.send(productos));
-  // }
-
-  //Product.findAll({ include: Categories }).then((result) => res.send(result));
+// ruta para buscar un producto en especifico por nombre.
+router.get("/search", (req, res) => {
+  const { string } = req.query;
+  Product.findAll({
+    where: {
+      name: {
+        [Op.iLike]: `%${string}%`,
+      },
+    },
+  }).then((r) => res.send(r));
 });
 
-// router.get("/:category", (req, res) => {
-//   Product.findAll({
-//     include: [{
-//       model: Categories,
-//       where: { name:  req.params.category }
-//     }]
-//   }).then((products)=> console.log(products));
-// });
+router.get("/:category", (req, res) => {
+  Category.findOne({
+    where: { name: req.params.category },
+    include: { model: Product },
+  }).then((categoria) => {
+    res.send(categoria.products);
+  });
+});
 
 router.get("/single/:id", (req, res) => {
   const id = req.params.id;
@@ -61,7 +48,7 @@ router.post("/", (req, res) => {
 
   Product.create(producto)
     .then((product) => {
-      Categories.findOrCreate({ where: { name: req.body.categoria } }).then(
+      Category.findOrCreate({ where: { name: req.body.categoria } }).then(
         (categoria) => {
           product.setCategories(categoria);
           res.status(201).send(product);
