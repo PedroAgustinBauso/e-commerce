@@ -1,4 +1,4 @@
-const { User, Categories, Product } = require("../models");
+const { User, Category, Product } = require("../models");
 
 User.bulkCreate([
   {
@@ -47,47 +47,37 @@ User.bulkCreate([
     date_of_birth: "2003-01-18",
     address: "iyzy",
   },
-]);
+], {validate: true });
 
-Categories.bulkCreate([
+Category.bulkCreate([
   {
-    id: 1,
     name: "Vinos",
   },
   {
-    id: 2,
     name: "Cervezas",
   },
   {
-    id: 3,
     name: "Espumantes",
   },
   {
-    id: 4,
     name: "Licores",
   },
   {
-    id: 5,
     name: "Gin",
   },
   {
-    id: 6,
     name: "Vodka",
   },
   {
-    id: 7,
     name: "Ron",
   },
   {
-    id: 8,
     name: "Aperitivos",
   },
   { 
-    id: 9,
     name: "Whisky" 
   },
   {
-    id: 10,
     name: "Otros",
   }
 ]);

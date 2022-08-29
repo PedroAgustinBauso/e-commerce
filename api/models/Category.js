@@ -1,9 +1,9 @@
 const { DataTypes, Model } = require("sequelize");
 const db = require("../db");
 
-class Categories extends Model {}
+class Category extends Model {}
 
-Categories.init(
+Category.init(
   {
     name: {
       type: DataTypes.STRING,
@@ -12,4 +12,4 @@ Categories.init(
   { sequelize: db, modelName: "categories" }
 );
 
-module.exports = Categories;
+module.exports = Category;

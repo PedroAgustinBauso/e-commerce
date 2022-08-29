@@ -9,6 +9,7 @@ class Cart extends Model {
 
 Cart.init(
   {
+    /*
     product_amount: {
       type: DataTypes.INTEGER,
     },
@@ -22,6 +23,7 @@ Cart.init(
     shipment_address: {
       type: DataTypes.STRING,
     },
+    */
   },
   { sequelize: db, modelName: "cart" }
 );
