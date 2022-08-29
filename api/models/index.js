@@ -10,8 +10,10 @@ User.hasOne(Cart);
 Cart.hasMany(CartItem);
 CartItem.belongsTo(Cart);
 
-Product.hasMany(Categories);
-Categories.belongsTo(Product);
+//Product.hasOne(Categories);
+//Categories.belongsTo(Product);
+Product.belongsTo(Categories)
+Categories.hasMany(Product)
 
 module.exports = { Product, User, Cart, Categories, CartItem };
 

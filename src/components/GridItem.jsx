@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const GridItem = ({ name, images, price, id }) => {
   return (
     <Card sx={{ maxWidth: 250 }}>
-      <Link to="/product/:id" style={{ textDecoration: "none" }} >
+      <Link to={`/product/${id}`} style={{ textDecoration: "none" }} >
         <CardMedia
           component="img"
           height="250"

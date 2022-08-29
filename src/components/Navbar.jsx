@@ -134,7 +134,6 @@ const Navbar = () => {
               </Button>
             ))}
           </Box>
-
           {user.name ? (
             <NavbarUserLogged user={user} />
           ) : (
