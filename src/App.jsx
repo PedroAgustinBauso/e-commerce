@@ -9,13 +9,36 @@ import CartItem from "./components/CartItem";
 import Register from "./pages/Register";
 
 function App() {
+  const categoriesList = [
+    "Vinos",
+    "Cervezas",
+    "Espumantes",
+    "Licores",
+    "Gin",
+    "Vodka",
+    "Ron",
+    "Aperitivos",
+    "Whisky",
+    "Otros",
+  ];
+
+  function getCategoryRoutes() {
+    let categoryRoutes = categoriesList.map((categoryListItem, index) => (
+      <Route
+        key={index}
+        path={`/${categoryListItem.toLocaleLowerCase()}`}
+        element={<Grid category={categoryListItem} />}
+      ></Route>
+    ));
+    return categoryRoutes;
+  }
+
   return (
     <div>
       <Navbar />
       <Routes>
         <Route path="/" element={<Grid category="none" />} />
-        <Route path="/vinos" element={<Grid category="Vinos" />} />
-        <Route path="/cervezas" element={<Grid category="Cervezas" />} />
+        {getCategoryRoutes()}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/product/:id" element={<SingleProductView />} />
