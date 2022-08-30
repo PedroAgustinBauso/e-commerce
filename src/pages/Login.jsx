@@ -40,6 +40,7 @@ export default function Login() {
       .then(({ payload }) => {
         console.log("PAYLOAD ES", payload);
         if (payload) {
+          localStorage.setItem("cart", JSON.stringify([]))
           setLoginStatus("success");
           setTimeout(() => navigate("/"), 3000);
         } else {

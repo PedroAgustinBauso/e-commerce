@@ -1,5 +1,5 @@
 import Navbar from "./components/Navbar";
-import React from "react";
+import React, { useEffect } from "react";
 import Login from "./pages/Login";
 import SingleProductView from "./components/SingleProduct";
 import { Routes, Route } from "react-router-dom";
@@ -8,8 +8,14 @@ import Cart from "./pages/Cart";
 import CartItem from "./components/CartItem";
 import Register from "./pages/Register";
 import AdminProducts from "./components/AdminProducts";
+import AdminUsers from "./components/AdminUsers";
+
 
 function App() {
+  useEffect(() => {
+    
+  }, [])
+  
   const categoriesList = [
     "Vinos",
     "Cervezas",
@@ -45,6 +51,7 @@ function App() {
         <Route path="/product/:id" element={<SingleProductView />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/admin/products" element={<AdminProducts />} />
+        <Route path="/admin/users" element={<AdminUsers/>} />
       </Routes>
     </div>
   );

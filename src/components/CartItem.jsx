@@ -19,7 +19,8 @@ const Img = styled("img")({
   maxHeight: "100%",
 });
 
-export default function CartItem() {
+export default function CartItem({product}) {
+  console.log(product)
   const precioUnitario = 1000;
  // setCantidad = () => {precio * cantidad}
   const [cantidad, setCantidad] = useState(1);
@@ -45,8 +46,8 @@ export default function CartItem() {
         <Grid item>
           <ButtonBase sx={{ width: 128, height: 128 }}>
             <Img
-              alt="complex"
-              src="https://m.media-amazon.com/images/I/81T9ClEfccL._AC_SL1500_.jpg"
+              alt="foto producto"
+              src={`${product.img}`}
             />
           </ButtonBase>
         </Grid>
@@ -54,10 +55,10 @@ export default function CartItem() {
           <Grid item xs container direction="column" spacing={2}>
             <Grid item xs>
               <Typography gutterBottom variant="subtitle1" component="div">
-                Fernet Branca
+               {product.name}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Descripcion
+                {product.description.slice(0,80 )}
               </Typography>
             </Grid>
             <Grid item>
@@ -68,10 +69,10 @@ export default function CartItem() {
           </Grid>
           <Grid item>
             <Typography variant="subtitle1" component="div">
-              Precio unitario.....${precioUnitario}
+              Precio unitario.....${product.price}
               <br/>
               <br/>
-              Precio...................${cantidad * precioUnitario}
+              Precio...................${product.total}
             </Typography>
           </Grid>
         </Grid>

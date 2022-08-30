@@ -10,11 +10,13 @@ import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { useDispatch, useSelector } from "react-redux";
+import { addItemToCart, removeAllItems } from "../store/cart";
 
 export default function SingleProductView() {
   const [product, setProduct] = useState({});
-
   const { id } = useParams();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     axios
@@ -22,7 +24,17 @@ export default function SingleProductView() {
       .then((res) => setProduct(res.data));
   }, [id]);
 
-  console.log(product);
+  const addToCart = (product) => {
+    const newItem = {
+      name: product.name,
+      cant: 1,
+      total: product.price,
+      price: product.price,
+      img: product.images,
+      description: product.description,
+    };
+    dispatch(addItemToCart(newItem));
+  };
 
   return !product.id ? (
     <Typography variant="h1" gutterBottom>
@@ -97,7 +109,13 @@ export default function SingleProductView() {
               <Chip label={`${product.stock}`} />
             </Box>
             <Box sx={{ mt: 3, ml: 1, mb: 1 }}>
-              <Button variant="contained" startIcon={<AddShoppingCartIcon />}>
+              <Button
+                variant="contained"
+                startIcon={<AddShoppingCartIcon />}
+                onClick={() => {
+                  addToCart(product);
+                }}
+              >
                 Agregar al carrito
               </Button>
             </Box>
