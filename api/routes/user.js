@@ -27,6 +27,7 @@ router.post("/login", (req, res) => {
       if (!isValid) return res.sendStatus(401);
 
       const payload = {
+        userId: user.id,
         email: user.email,
         name: user.name,
         lastname: user.lastname,
