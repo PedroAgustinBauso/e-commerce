@@ -1,40 +1,67 @@
 const express = require("express");
-const cartRouter = express.Router();
-const {
-  Product,
-  User,
-  Ticket,
-  Cart,
-  Categories,
-  CartItem,
-} = require("../models");
+const cart = express.Router();
+const { Product, Cart, CartItem } = require("../models");
 
+// Route to display the cart
+cart.get("/:userId", async (req, res) => {
+  const { userId } = req.params;
 
-
-cartRouter.get("/:id", (req, res) => {
-  Cart.findByPk(req.params.id, { include: Product }).then((cart) => {
-    res.send(cart);
+  let cart = await Cart.findOne({
+    where: { userId },
+    include: {
+      model: Product,
+    },
   });
+
+  let result = cart.products.map((item) => {
+    return {
+      id: item.id,
+      name: item.name,
+      description: item.description,
+      price: item.price,
+      image: item.images,
+      quantity: item.cart_item.quantity,
+    };
+  });
+
+  res.send(result);
 });
 
-//ruta de agregar y editar item
-//desde el fron viene el precio del producto, su cantidad y su nombre,
-//además del id del usuario logueado en ese momento
-cartRouter.put("/:id", (req, res) => {
-  CartItem.findOrCreate({ where: { id: req.body.userId } }).then(
-    ([cart_item]) => {
-      cart_item.update(req.body);
-      res.status(202).send(cart_item);
-    }
-  );
+// Route to create a cart, add a new cart item or edit the quantity of an existing one.
+cart.post("/", async (req, res) => {
+  const { userId, productId, quantity } = req.body;
+  if (quantity <= 0) {
+    return res.status(400).send("The quantity must be higher than zero.");
+  }
+
+  let [cart, created] = await Cart.findOrCreate({ where: { userId } });
+
+  let product = await CartItem.findOne({
+    where: { cartId: cart.id, productId },
+  });
+
+  if (product === null) {
+    CartItem.create({ cartId: cart.id, productId, quantity });
+  } else {
+    CartItem.update({ quantity }, { where: { cartId: cart.id, productId } });
+  }
+
+  res.status(200).send();
 });
 
-//ruta para eliminar un item
-cartRouter.delete("/:id", (req, res) => {
-  CartItem.destroy({ where: { id: req.params.id } }).then(() =>
-    res.sendStatus(204)
-  );
+// Route to delete cartItems and to delete the cart if it has no remaining cartItems.
+cart.delete("/:userId/:productId", async (req, res) => {
+  const { userId, productId } = req.params;
+  let cart = await Cart.findOne({ where: { userId } });
+  await CartItem.destroy({ where: { cartId: cart.id, productId } });
+
+  let cartItemCount = await CartItem.count({ where: { cartId: cart.id } });
+
+  if (cartItemCount === 0) {
+    await Cart.destroy({ where: { id: cart.id } });
+  }
+
+  res.sendStatus(200);
 });
 
-
-module.exports = cartRouter;
+module.exports = cart;
