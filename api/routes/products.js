@@ -35,8 +35,8 @@ router.get("/single/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  const producto = req.body;
-
+  const { categoryName, ...producto } = req.body;
+ 
   // const { categoria } = req.body;
 
   //   Categorias.findOrCreate({ where: { nombre: categoria } }).then((finds) => {
@@ -46,19 +46,31 @@ router.post("/", (req, res) => {
   //       .then((productos) => res.send(productos));
   //   });
 
-  Product.create(producto)
-    .then((product) => {
-      Category.findOrCreate({ where: { name: req.body.categoria } }).then(
-        (categoria) => {
-          product.setCategories(categoria);
-          res.status(201).send(product);
-        }
-      );
-    })
-    .catch((err) => {
-      console.log(err);
-      res.sendStatus(401);
-    });
+  // Product.create(producto)
+  //   .then((product) => {
+  //     Category.findOrCreate({ where: { name: req.body.categoria } }).then(
+  //       (categoria) => {
+  //         product.setCategories(categoria);
+  //         res.status(201).send(product);
+  //       }
+  //     );
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //     res.sendStatus(401);
+  //   });
+
+  Category.findOrCreate({where:{
+    name: categoryName,
+  }})
+  .then((response)=> {
+    const categoria = response[0]
+    
+    Product.create(producto)
+    .then(producto=> producto.setCategory(categoria).then(result=> res.send(result)))
+    
+  })
+
 });
 
 router.put("/:id", (req, res) => {

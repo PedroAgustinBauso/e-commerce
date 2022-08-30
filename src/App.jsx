@@ -7,6 +7,7 @@ import Grid from "./components/Grid";
 import Cart from "./pages/Cart";
 import CartItem from "./components/CartItem";
 import Register from "./pages/Register";
+import AdminProducts from "./components/AdminProducts";
 
 function App() {
   const categoriesList = [
@@ -43,6 +44,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/product/:id" element={<SingleProductView />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/admin/products" element={<AdminProducts />} />
       </Routes>
     </div>
   );

@@ -30,6 +30,8 @@ router.post("/login", (req, res) => {
         email: user.email,
         name: user.name,
         lastname: user.lastname,
+        is_admin: user.is_admin,
+        id : user.id,
       };
 
       const token = generateToken(payload);
