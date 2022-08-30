@@ -1,5 +1,5 @@
 import Navbar from "./components/Navbar";
-import React from "react";
+import React, { useEffect } from "react";
 import Login from "./pages/Login";
 import SingleProductView from "./components/SingleProduct";
 import { Routes, Route } from "react-router-dom";
@@ -10,6 +10,10 @@ import Register from "./pages/Register";
 import AdminUsers from "./components/AdminUsers";
 
 function App() {
+  useEffect(() => {
+    
+  }, [])
+  
   const categoriesList = [
     "Vinos",
     "Cervezas",

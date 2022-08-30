@@ -33,7 +33,10 @@ const NavbarUserLogged = ({ user }) => {
         <Avatar sx={{ bgcolor: deepOrange[500] }}>{user.name[0]}</Avatar>
       </MenuItem>
 
-      <MenuItem onClick={handleCartNavbar} style={{ textDecoration: "none", color: "white" }}>
+      <MenuItem
+        onClick={handleCartNavbar}
+        style={{ textDecoration: "none", color: "white" }}
+      >
         <ShoppingCartIcon />
       </MenuItem>
 
