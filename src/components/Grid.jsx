@@ -7,11 +7,6 @@ import axios from "axios";
 const Grid = ({ category }) => {
   const [productList, setProductList] = useState([]);
 
-  // const params = useParams()
-  // console.log("params", params)
-  // const location = useLocation()
-  // console.log("Location es", location)
-
   useEffect(() => {
     axios
     .get(`http://localhost:3001/api/products/${category === "none" ? '' : category}`)
@@ -61,6 +56,7 @@ const Grid = ({ category }) => {
               name={item.name}
               images={item.images}
               price={`$ ${item.price}`}
+              description={`${item.description}`}
               id={item.id}
             />
           </div>
