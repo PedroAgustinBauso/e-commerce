@@ -39,7 +39,7 @@ const NavbarUserLogged = ({ user }) => {
   const handleManageUsers = () => {
     //Lleva al componente que organiza los usuarios.
     setAnchorEl(null);
-    navigate("/admin/user")
+    navigate("/admin/users")
   };
 
   const handleManageProducts = () => {
