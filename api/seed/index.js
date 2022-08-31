@@ -161,17 +161,6 @@ Category.bulkCreate([
         "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/gancia-950ml1-6ccf34584bd8855e3215627816837011-480-0.jpg",
     },
     {
-      name: "Jack Daniels",
-      categoryId: 10,
-      price: 8900,
-      description:
-        "El color, cuerpo y sabor característico del Jack Daniels se debe a un minucioso proceso que lo hace único.",
-      stock: 8,
-      brand: "Jack Daniels",
-      images:
-        "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/unadjustednonraw_thumb_9bbb1-d5a6a59c05a65bb59016244773908078-480-0.jpg",
-    },
-    {
       name: "Mastrantonio 63 Petit Verdot",
       categoryId: 1,
       price: 2500,
@@ -203,5 +192,135 @@ Category.bulkCreate([
       images:
         "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/tardia_mrkvfd1-70f19628a2226ecc1115918287459152-640-0.jpg",
     },
+    {
+      name: "Alma Negra Brut Nature 750ml",
+      categoryId: 3,
+      price: 4100,
+      description: "Un sensacional espumante, para no arrepentirse.",
+      stock: 5,
+      brand: "Familia Brutsky",
+      images:
+        "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/40911-1a868ca602da33ef0116189560174152-320-0.jpg",
+    },
+    {
+      name: "Licor de Huevo Tres Plumas",
+      categoryId: 4,
+      price: 560,
+      description: "Licor de sensacional sabor e intensidad.",
+      stock: 5,
+      brand: "Tres Plumas",
+      images:
+        "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/5420141-06ce264fed14e0142515918250839034-320-0.jpg",
+    },
+    {
+      name: "Tia Maria Cream 690ml",
+      categoryId: 4,
+      price: 1750,
+      description:
+        "Tia Maria Cream combina el sabor de Tia Maria más la sensualidad de la crema fresca y un toque de finas esencias.",
+      stock: 5,
+      brand: "Tia Maria",
+      images:
+        "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/tia-maria-cream-690ml1-9dccbb156ff126db0415627832149667-320-0.jpg",
+    },
+    {
+      name: "Gin Terrier Old Tom",
+      categoryId: 5,
+      price: 4200,
+      description:
+        "Un viaje sensorial al siglo XIX,en el que nace este estilo. Más dulce que un London Dry Gin y menos que una Ginebra Holandesa, el Old Tom vuelve para quedarse.",
+      stock: 5,
+      brand: "Old Tom",
+      images:
+        "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/whatsapp-image-2021-05-22-at-15-49-3921-0f18965618fc42367e16217814844049-320-0.jpeg",
+    },
+    {
+      name: "Gin Larios Rose 700ml",
+      categoryId: 5,
+      price: 2900,
+      description: "Gin mediterráneo de excelencia, destilado cuatro veces.",
+      stock: 5,
+      brand: "Larios",
+      images:
+        "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/larios-rose1-361bd76a3a5c33ccb116464063317401-320-0.jpg",
+    },
+    {
+      name: "Abolute Blue 750ml",
+      categoryId: 6,
+      price: 3300,
+      description:
+        "El primero de todos los Absolut, producido en 1979. Modo de consumo: Puro, con hielo o en tragos. Tipo de elaboración: Destilación continua.",
+      stock: 5,
+      brand: "Absolute Vodka",
+      images:
+        "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/absolut-blue-750ml1-da62fac0e6f537d57c15627801825570-320-0.jpg",
+    },
+    {
+      name: "Abolute Mandrin 750ml",
+      categoryId: 6,
+      price: 3600,
+      description:
+        "Introducido en 1999. Es de color cristalino. Su aroma es de carácter complejo y frutado aportado por la combinación de naranjas y mandarinas, con notas de cáscaras de naranja.",
+      stock: 5,
+      brand: "Absolute Vodka",
+      images:
+        "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/image71-8b9f64232aa72929a515913104553675-320-0.jpeg",
+    },
+    {
+      name: "Skyy Maracuya 750ml",
+      categoryId: 6,
+      price: 1350,
+      description:
+        "Impresionante sabor a maracuyá combinado con vodka.",
+      stock: 5,
+      brand: "Skyy",
+      images:
+        "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/skyy-maracuya-750ml1-94cc1d8802a6616f3215616914225619-320-0.jpg",
+    },
+    {
+      name: "Bacardi Oro 1L",
+      categoryId: 7,
+      price: 2800,
+      description:
+        "Bacardí Carta Blanca Oro es el primer ron dorado ligero del mundo. Se envejece en barricas de roble blanco tostado al fuego para darle carácter, sometiéndolo posteriormente a filtración hasta conseguir su suavidad característica.",
+      stock: 5,
+      brand: "Bacardi",
+      images:
+        "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/ron-bacardi-carta-oro-40-r2-4653_41-b659e9c506b7039f1d15914732492415-320-0.jpg",
+    },
+    {
+      name: "Bacardi Superior 1L",
+      categoryId: 7,
+      price: 2800,
+      description:
+        "Un clásico ron blanco con notas distintivas de vainilla y almendra, elaborado en barriles de roble blanco y moldeado con una mezcla secreta de carbón vegetal para lograr una suavidad inconfundible.",
+      stock: 5,
+      brand: "Bacardi",
+      images:
+        "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/bacardi-superior-1l1-aa3271c59f5b5bf38a15610621030616-320-0.jpg",
+    },
+    {
+      name: "Buchanas Deluxe 750ml",
+      categoryId: 9,
+      price: 7300,
+      description:
+        "Un clásico por más de 130 años, el whisky de 12 años de Buchanan's, una de las marcas de whisky escocés de lujo más icónicas y premiadas del mundo.",
+      stock: 5,
+      brand: "Buchanas",
+      images:
+        "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/buchanans-deluxe1-402260182c8195eb9015603122157081-320-0.jpg",
+    },
+    {
+      name: "Chivas 12 años 500ml",
+      categoryId: 9,
+      price: 4300,
+      description:
+        "El Whisky Chivas Regal aparece en escena por el año 1801 en la vieja Escocia, producido por la compañía Chivas Brothers en la ciudad de Aberdeen (Escocia). La destilería que lo fabrica es “Strathisla”, de procedencia del pueblo de Keith, a las orillas del rio Spey.",
+      stock: 5,
+      brand: "Chivas",
+      images:
+        "https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/chivas-12-anos-500ml1-8f95af54252fc9888815627945613202-320-0.jpg",
+    },
+
   ]);
 });
