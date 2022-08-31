@@ -39,19 +39,19 @@ const NavbarUserLogged = ({ user }) => {
   const handleManageUsers = () => {
     //Lleva al componente que organiza los usuarios.
     setAnchorEl(null);
-    navigate("/admin/users")
+    navigate("/admin/users");
   };
 
   const handleManageProducts = () => {
     //Lleva al componente para Agregar o Editar un producto
     setAnchorEl(null);
-    navigate("/admin/products")
+    navigate("/admin/products");
   };
 
   const handleOrders = () => {
     //Lleva al componente para que el usuario vea su historial de compras.
     setAnchorEl(null);
-    navigate("/user/orders")
+    navigate("/user/orders");
   };
 
   return (
@@ -60,24 +60,34 @@ const NavbarUserLogged = ({ user }) => {
         <Avatar sx={{ bgcolor: deepOrange[500] }}>{user.name[0]}</Avatar>
       </MenuItem>
       <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'center',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'center',
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                {user.is_admin?<> <MenuItem onClick={handleManageUsers}>Users</MenuItem>
-                <MenuItem onClick={handleManageProducts}>Products</MenuItem> </>: <MenuItem onClick={handleOrders}>Orders</MenuItem> }
-        </Menu>
-      <MenuItem onClick={handleCartNavbar} style={{ textDecoration: "none", color: "white" }}>
+        id="menu-appbar"
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+        keepMounted
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        {user.is_admin ? (
+          <>
+            {" "}
+            <MenuItem onClick={handleManageUsers}>Users</MenuItem>
+            <MenuItem onClick={handleManageProducts}>Products</MenuItem>{" "}
+          </>
+        ) : (
+          <MenuItem onClick={handleOrders}>Orders</MenuItem>
+        )}
+      </Menu>
+      <MenuItem
+        onClick={handleCartNavbar}
+        style={{ textDecoration: "none", color: "white" }}
+      >
         <ShoppingCartIcon />
       </MenuItem>
 

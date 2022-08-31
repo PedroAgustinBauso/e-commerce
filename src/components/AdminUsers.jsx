@@ -77,7 +77,7 @@ const AdminUsers = () => {
       fixed={true}
     >
       <List
-        sx={{ width: "100%", bgcolor: "background.paper", m: 0.5 }}
+        sx={{ width: "100%", bgcolor: "background.paper", m: 1 }}
         subheader={<ListSubheader>Users:</ListSubheader>}
       >
         {users.map((user) => (
@@ -88,8 +88,8 @@ const AdminUsers = () => {
             <ListItemText primary={`${user.lastname}, ${user.name}`} />
             <ListItemText primary={user.email} />
             <FormControlLabel
-              /* label="Admin" */
-              /* labelPlacement="start" */
+              /* label="Promover/Revocar Admin:"
+              labelPlacement="top" */
               control={
                 <Switch
                   edge="end"
