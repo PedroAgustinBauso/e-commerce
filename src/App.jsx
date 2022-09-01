@@ -11,7 +11,7 @@ import AdminProducts from "./components/AdminProducts";
 import AdminUsers from "./components/AdminUsers";
 import AdminCategories from "./components/AdminCategories";
 import axios from "axios";
-
+import UserOrders from "./components/UserOrders";
 
 function App() {
   const [categoriesList, setCategoriesList] = useState([])
@@ -21,9 +21,6 @@ function App() {
       setCategoriesList(res.data);
     });
   }, [])
-import UserOrders from "./components/UserOrders";
-
-function App() {
 
   function getCategoryRoutes() {
     let categoryRoutes = categoriesList.map((categoryListItem) => (
