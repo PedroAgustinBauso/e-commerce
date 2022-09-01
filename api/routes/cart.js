@@ -43,7 +43,10 @@ cart.post("/", async (req, res) => {
   if (product === null) {
     CartItem.create({ cartId: cart[0].id, productId, quantity });
   } else {
-    CartItem.update({ quantity }, { where: { cartId: cart[0].id, productId } });
+    CartItem.update(
+      { quantity: quantity },
+      { where: { cartId: cart[0].id, productId } }
+    );
   }
   res.sendStatus(200);
 });
