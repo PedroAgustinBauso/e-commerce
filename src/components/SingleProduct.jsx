@@ -11,29 +11,38 @@ import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useDispatch, useSelector } from "react-redux";
-import { addItemToCart, removeAllItems } from "../store/cart";
-
+import { addToCart } from "../utils/addToCart";
+import Alert from "@mui/material/Alert";
 export default function SingleProductView() {
   const [product, setProduct] = useState({});
   const { id } = useParams();
   const dispatch = useDispatch();
-
+  const user = useSelector((state) => state.user);
+  const cart = useSelector((state) => state.cart);
   useEffect(() => {
     axios
       .get(`http://localhost:3001/api/products/single/${id}`)
       .then((res) => setProduct(res.data));
   }, [id]);
 
-  const addToCart = (product) => {
+  const addItemToCart = () => {
     const newItem = {
+      productId: product.id,
       name: product.name,
-      cant: 1,
-      total: product.price,
       price: product.price,
+      quantity: 1,
+      total: product.price,
       img: product.images,
       description: product.description,
     };
-    dispatch(addItemToCart(newItem));
+    const index = cart.findIndex((item) => item.name === newItem.name);
+
+    if (index === -1) {
+      addToCart(newItem, dispatch, user);
+    } else {
+      if (product.stock > cart[index].quantity)
+        addToCart(newItem, dispatch, user);
+    }
   };
 
   return !product.id ? (
@@ -112,9 +121,7 @@ export default function SingleProductView() {
               <Button
                 variant="contained"
                 startIcon={<AddShoppingCartIcon />}
-                onClick={() => {
-                  addToCart(product);
-                }}
+                onClick={addItemToCart}
               >
                 Agregar al carrito
               </Button>

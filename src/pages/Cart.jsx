@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CartItem from "../components/CartItem";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -6,8 +6,9 @@ import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
+import { removeAllItems } from "../store/cart";
+import axios from "axios";
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body1,
@@ -20,22 +21,42 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
-  console.log("CARRITO",cart);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+
+  const totalCart = cart.reduce((acumulador, item) => {
+    return acumulador + item.total;
+  }, 0);
+  
+  const clearCart = async () => {
+    if (user.userId) {
+      await axios.delete(`http://localhost:3001/api/cart/${user.userId}`);
+      dispatch(removeAllItems());
+    } else {
+      dispatch(removeAllItems());
+    }
+  };
+
   return (
     <div>
       <h1>Mi carrito</h1>
-      {cart.map((product, i) => {
-        return <CartItem product={product} />;
-      })}
+      {cart.length > 0
+        ? cart.map((product, i) => {
+            return <CartItem key={i} product={product} />;
+          })
+        : "No hay productos en el carrito"}
       <Box sx={{ width: "100%" }}>
         <Stack spacing={20}>
-          <Item>{`TOTAL`}</Item>
+          <Item>{`TOTAL $ ${totalCart}`}</Item>
         </Stack>
       </Box>
       <Button variant="contained">Finalizar compra</Button>
       <Link to="/">
         <Button variant="outlined">Seguir comprando</Button>
       </Link>
+      <Button variant="outlined" onClick={clearCart}>
+        Limpiar carrito
+      </Button>
     </div>
   );
 };

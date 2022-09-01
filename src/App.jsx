@@ -1,5 +1,5 @@
 import Navbar from "./components/Navbar";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Login from "./pages/Login";
 import SingleProductView from "./components/SingleProduct";
 import { Routes, Route } from "react-router-dom";
@@ -10,32 +10,26 @@ import Register from "./pages/Register";
 import AdminProducts from "./components/AdminProducts";
 import AdminUsers from "./components/AdminUsers";
 import AdmEditeDeleteProd from "./components/AdmEditeDeleteProd";
+import AdminCategories from "./components/AdminCategories";
+import axios from "axios";
+import UserOrders from "./components/UserOrders";
 
 
 function App() {
+  const [categoriesList, setCategoriesList] = useState([])
+
   useEffect(() => {
-    
+    axios.get(`http://localhost:3001/api/category`).then((res) => {
+      setCategoriesList(res.data);
+    });
   }, [])
-  
-  const categoriesList = [
-    "Vinos",
-    "Cervezas",
-    "Espumantes",
-    "Licores",
-    "Gin",
-    "Vodka",
-    "Ron",
-    "Aperitivos",
-    "Whisky",
-    "Otros",
-  ];
 
   function getCategoryRoutes() {
-    let categoryRoutes = categoriesList.map((categoryListItem, index) => (
+    let categoryRoutes = categoriesList.map((categoryListItem) => (
       <Route
-        key={index}
-        path={`/${categoryListItem.toLocaleLowerCase()}`}
-        element={<Grid category={categoryListItem} />}
+        key={categoryListItem.id}
+        path={`/${categoryListItem.name.toLocaleLowerCase()}`}
+        element={<Grid category={categoryListItem.name} />}
       ></Route>
     ));
     return categoryRoutes;
@@ -54,6 +48,8 @@ function App() {
         <Route path="/admin/products" element={<AdminProducts />} />
         <Route path="/admin/users" element={<AdminUsers/>} />
         <Route path="/admin/products/edit" element={<AdmEditeDeleteProd/>} />
+        <Route path="/admin/category" element={<AdminCategories/>}/>
+        <Route path="/user/orders" element={<UserOrders />} />
       </Routes>
     </div>
   );

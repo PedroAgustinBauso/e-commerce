@@ -18,7 +18,6 @@ const Grid = ({ category }) => {
         }`
       )
       .then((response) => {
-        console.log(response);
         setProductList(response.data);
       })
       .catch((error) => {
@@ -38,30 +37,6 @@ const Grid = ({ category }) => {
     _DATA.jump(p);
   };
 
-  // useEffect(() => {
-  //   if (location.pathname === "/") {
-  //     axios
-  //     .get("http://localhost:3001/api/products")
-  //     .then((response) => {
-  //       setProductList(response.data);
-  //       console.log("response data local home", response.data)
-  //     })
-  //     .catch((error) => {
-  //       console.log("entré por error");
-  //     });
-  //   } else if (location.pathname === "vinos") {
-  //     axios
-  //     .get("http://localhost:3001/api/products/Vinos")
-  //     .then((response) => {
-  //       setProductList(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log("entré por error");
-  //     });
-  //   }
-
-  // }, []);
-
   return (
     <div>
       <h1 className={classes.gridTitle}>
@@ -70,13 +45,7 @@ const Grid = ({ category }) => {
       <div className={classes.flexcontainer}>
         {_DATA.currentData().map((item) => (
           <div key={item.id} className={classes.flexitem}>
-            <GridItem
-              name={item.name}
-              images={item.images}
-              price={`$ ${item.price}`}
-              description={`${item.description}`}
-              id={item.id}
-            />
+            <GridItem product={item} />
           </div>
         ))}
       </div>

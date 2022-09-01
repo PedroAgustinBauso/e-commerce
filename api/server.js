@@ -2,13 +2,16 @@ const express = require("express");
 const db = require("./db");
 const routes = require("./routes");
 const morgan = require("morgan");
-const cors = require("cors")
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
+
 
 var app = express();
 require("./models");
 
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(cookieParser());
 
 app.use(
   cors({

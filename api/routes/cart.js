@@ -12,19 +12,21 @@ cart.get("/:userId", async (req, res) => {
       model: Product,
     },
   });
-
-  let result = cart.products.map((item) => {
-    return {
-      id: item.id,
-      name: item.name,
-      description: item.description,
-      price: item.price,
-      image: item.images,
-      quantity: item.cart_item.quantity,
-    };
-  });
-
-  res.send(result);
+  if (cart) {
+    let result = cart.products.map((item) => {
+      return {
+        id: item.id,
+        name: item.name,
+        description: item.description,
+        price: item.price,
+        image: item.images,
+        quantity: item.cart_item.quantity,
+      };
+    });
+    res.send(result);
+  } else {
+    res.sendStatus(204);
+  }
 });
 
 // Route to create a cart, add a new cart item or edit the quantity of an existing one.
@@ -67,4 +69,10 @@ cart.delete("/:userId/:productId", async (req, res) => {
   res.sendStatus(200);
 });
 
+//Route to delete the whole cart (this will asl delete its cart items)
+cart.delete("/:userId", async (req, res) => {
+  const { userId } = req.params;
+  await Cart.destroy({ where: { userId } });
+  res.sendStatus(200);
+});
 module.exports = cart;

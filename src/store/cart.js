@@ -8,26 +8,42 @@ import {
 // });
 export const addItemToCart = createAction("ADD_TO_CART");
 export const removeAllItems = createAction("REMOVE_ALL_ITEMS");
-
-const initialState = {
-  cartItems: [],
-  totalAmount: 0,
-};
+export const removeItem = createAction("REMOVE_ITEM");
+export const deleteItem = createAction("DELETE_ITEM");
 
 const cartReducer = createReducer([], {
-  // [addItemToCart.fulfilled]: (state, action) => action.payload,
   [addItemToCart]: (state, action) => {
     const index = state.findIndex((item) => item.name === action.payload.name);
 
-    console.log("STATE", action.payload);
     if (index === -1) {
       state.push(action.payload);
     } else {
       state[index].total += state[index].price;
-      state[index].cant += 1;
-      //state.push({ ...action.payload });
+      state[index].quantity += 1;
     }
+    return state;
+  },
+  [deleteItem]: (state, action) => {
+    const estado = [].concat(state);
+    const index = state.findIndex((item) => item.name === action.payload.name);
 
+    if (index > -1) {
+      estado.splice(index, 1);
+      state = estado;
+      return state;
+    }
+  },
+  [removeItem]: (state, action) => {
+    const index = state.findIndex((item) => item.name === action.payload.name);
+    if (index === -1) {
+    } else {
+      if (state[index].quantity > 1) {
+        state[index].total -= state[index].price;
+        state[index].quantity -= 1;
+      } else {
+        state.splice(index, 1);
+      }
+    }
     return state;
   },
   [removeAllItems]: (state, action) => (state = []),

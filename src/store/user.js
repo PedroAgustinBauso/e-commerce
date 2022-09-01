@@ -14,9 +14,12 @@ export const sendLogoutRequest = createAsyncThunk("LOGOUT", (cart) => {
     .catch((err) => console.log("Something happened in logoutRequest", err));
 });
 
-const userReducer = createReducer({}, {
-  [sendLoginRequest.fulfilled]: (state, action) => action.payload,
-  [sendLogoutRequest.fulfilled]: (state, action) => (state = {}),
-});
+const userReducer = createReducer(
+  {},
+  {
+    [sendLoginRequest.fulfilled]: (state, action) => action.payload,
+    [sendLogoutRequest.fulfilled]: (state, action) => (state = {}),
+  }
+);
 
 export default userReducer;
