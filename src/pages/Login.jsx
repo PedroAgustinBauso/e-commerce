@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { sendLoginRequest } from "../store/user";
@@ -24,6 +24,8 @@ export default function Login() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
+
 
   // configuracion de react-hook-form
   const {
@@ -35,17 +37,21 @@ export default function Login() {
 
   // handle login
   const onSubmit = (data) => {
-    console.log(data);
     dispatch(sendLoginRequest(data))
       .then(({ payload }) => {
         console.log("PAYLOAD ES", payload);
+        console.log(cart);
         if (payload) {
-          localStorage.setItem("cart", JSON.stringify([]))
+          localStorage.setItem("cart", JSON.stringify([]));
           setLoginStatus("success");
-          setTimeout(() => navigate("/"), 3000);
+          if(cart.length > 0){
+            
+          }
+          setTimeout(() => navigate("/"), 1000);
+
         } else {
           setLoginStatus("error");
-          setTimeout(() => setLoginStatus(""), 3000);
+          setTimeout(() => setLoginStatus(""), 1000);
           reset();
         }
       })

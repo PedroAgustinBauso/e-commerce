@@ -9,13 +9,11 @@ import CartItem from "./components/CartItem";
 import Register from "./pages/Register";
 import AdminProducts from "./components/AdminProducts";
 import AdminUsers from "./components/AdminUsers";
-
+import UserOrders from "./components/UserOrders";
 
 function App() {
-  useEffect(() => {
-    
-  }, [])
-  
+  useEffect(() => {}, []);
+
   const categoriesList = [
     "Vinos",
     "Cervezas",
@@ -51,7 +49,8 @@ function App() {
         <Route path="/product/:id" element={<SingleProductView />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/admin/products" element={<AdminProducts />} />
-        <Route path="/admin/users" element={<AdminUsers/>} />
+        <Route path="/admin/users" element={<AdminUsers />} />
+        <Route path="/user/orders" element={<UserOrders />} />
       </Routes>
     </div>
   );

@@ -2,7 +2,7 @@ const express = require("express");
 const db = require("./db");
 const routes = require("./routes");
 const morgan = require("morgan");
-const cors = require("cors")
+const cors = require("cors");
 
 var app = express();
 require("./models");

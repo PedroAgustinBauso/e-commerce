@@ -3,7 +3,9 @@ import { createReducer, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const sendLoginRequest = createAsyncThunk("LOGIN", (data) => {
   return axios
-    .post("http://localhost:3001/api/users/login", data)
+    .post("http://localhost:3001/api/users/login", data, {
+      withCredentials: true,
+    })
     .then((r) => r.data)
     .catch((err) => console.log("Something happened in loginRequest", err));
 });

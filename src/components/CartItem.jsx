@@ -1,16 +1,18 @@
 import * as React from "react";
-import { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import ButtonBase from "@mui/material/ButtonBase";
 import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import FormControl from "@mui/material/FormControl";
-import NativeSelect from "@mui/material/NativeSelect";
-
-import styles from "./CartItem.module.css"
+import Button from "@mui/material/Button";
+import styles from "./CartItem.module.css";
+import ButtonGroup from "@mui/material/ButtonGroup";
+import { removeItem, deleteItem } from "../store/cart";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { addToCartItem } from "../utils/addToCartItem";
+import Alert from "@mui/material/Alert";
 
 const Img = styled("img")({
   margin: "auto",
@@ -19,16 +21,63 @@ const Img = styled("img")({
   maxHeight: "100%",
 });
 
-export default function CartItem({product}) {
-  console.log(product)
-  const precioUnitario = 1000;
- // setCantidad = () => {precio * cantidad}
-  const [cantidad, setCantidad] = useState(1);
+export default function CartItem({ product }) {
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
 
-  const handleSelectChange = (e) => {
-    setCantidad(e.target.value)
+  const addItemToCart = (product) => {
+    const newItem = {
+      productId: product.id || product.productId,
+      name: product.name,
+      price: product.price,
+      quantity: 1,
+      total: product.price,
+      img: product.images,
+      description: product.description,
+    };
+    addToCartItem(newItem, dispatch, user, cart);
   };
 
+  const removeOneItem = () => {
+    const remove = {
+      productId: product.productId,
+      userId: user.userId,
+      quantity: product.quantity,
+    };
+    if (user.userId) {
+      axios
+        .post("http://localhost:3001/api/cart", remove)
+        .then((res) => dispatch(removeItem(product)));
+    } else {
+      dispatch(removeItem(product));
+    }
+  };
+
+  const deleteCartItem = () => {
+    if (user.userId) {
+      axios.delete(
+        `http://localhost:3001/api/cart/${user.userId}/${product.productId}`
+      );
+      dispatch(deleteItem(product));
+    } else {
+      dispatch(deleteItem(product));
+    }
+  };
+  const buttons = [
+    <Button key="one" onClick={removeOneItem}>
+      -
+    </Button>,
+    <Button key="two">{product.quantity}</Button>,
+    <Button
+      key="three"
+      onClick={() => {
+        addItemToCart(product, cart, dispatch, user);
+      }}
+    >
+      +
+    </Button>,
+  ];
 
   return (
     <Paper
@@ -45,66 +94,49 @@ export default function CartItem({product}) {
       <Grid container spacing={2}>
         <Grid item>
           <ButtonBase sx={{ width: 128, height: 128 }}>
-            <Img
-              alt="foto producto"
-              src={`${product.img}`}
-            />
+            <Img alt="foto producto" src={`${product.img}`} />
           </ButtonBase>
         </Grid>
         <Grid item xs={12} sm container>
           <Grid item xs container direction="column" spacing={2}>
             <Grid item xs>
               <Typography gutterBottom variant="subtitle1" component="div">
-               {product.name}
+                {product.name}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                {product.description.slice(0,80 )}
+                {product.description.slice(0, 80)}
               </Typography>
             </Grid>
             <Grid item>
-              <Typography sx={{ cursor: "pointer" }} variant="body2">
+              <Typography
+                sx={{ cursor: "pointer" }}
+                variant="body2"
+                onClick={deleteCartItem}
+              >
                 Eliminar
               </Typography>
             </Grid>
           </Grid>
           <Grid item>
             <Typography variant="subtitle1" component="div">
-              Precio unitario.....${product.price}
-              <br/>
-              <br/>
+              Precio unitario.....$ {product.price}
+              <br />
+              <br />
               Precio...................${product.total}
             </Typography>
+            <Box
+              sx={{ minWidth: 10, maxWidth: 50 }}
+              className={styles.cantidad}
+            >
+              <Typography variant="body2" color="text.secondary">
+                Cantidad
+              </Typography>
+              <ButtonGroup size="small" aria-label="small button group">
+                {buttons}
+              </ButtonGroup>
+            </Box>
           </Grid>
         </Grid>
-
-            <Box sx={{ minWidth: 10, maxWidth: 50 }} className={styles.cantidad} onChange = {handleSelectChange}>
-              <FormControl >
-                <InputLabel variant="standard" htmlFor="uncontrolled-native">
-                  Cantidad
-                </InputLabel>
-                <NativeSelect
-                  defaultValue={cantidad}
-/*                   inputProps={{
-                    name: "age",
-                    id: "uncontrolled-native",
-                  }} */
-                  
-                >
-
-                  <option value={1}>1</option>
-                  <option value={2}>2</option>
-                  <option value={3}>3</option>
-                  <option value={4}>4</option>
-                  <option value={5}>5</option>
-                  <option value={6}>6</option>
-                  <option value={7}>7</option>
-                  <option value={8}>8</option>
-                  <option value={9}>9</option>
-                  <option value={10}>10</option>
-                </NativeSelect>
-              </FormControl>
-            </Box>
-
       </Grid>
     </Paper>
   );
