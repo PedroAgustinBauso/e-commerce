@@ -57,7 +57,7 @@ const AdminProducts = () => {
         </Avatar>
 
         <Typography component="h1" variant="h5">
-          Products
+          Add Products
         </Typography>
 
         <form onSubmit={handleSubmit(onSubmit)}>
