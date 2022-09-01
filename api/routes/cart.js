@@ -53,6 +53,7 @@ cart.post("/", async (req, res) => {
   res.sendStatus(200);
 });
 
+
 // Route to delete cartItems and to delete the cart if it has no remaining cartItems.
 cart.delete("/:userId/:productId", async (req, res) => {
   const { userId, productId } = req.params;
