@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const transporter = require("../config/mailer");
+const contentEmail = require("../helper/contentEmail");
 const {
   Product,
   Cart,
@@ -9,8 +11,9 @@ const {
   User,
 } = require("../models");
 
-router.get("/:userId", async (req, res) => {
+router.post("/:userId", async (req, res) => {
   let totalAmount = 0;
+
   const { userId } = req.params;
 
   let cart = await Cart.findOne({
@@ -27,17 +30,56 @@ router.get("/:userId", async (req, res) => {
     totalAmount,
   });
 
-  let orderItems = cart.products.map((product) => {
-    res.send(product[0].cart_items);
-    // return {
-    //   ...product.cart_item,
-    //   orderId: order.id,
-    // };
+  let cartItems = cart.products.map((product) => {
+    return {
+      productId: product.id,
+      orderId: order.id,
+      stock: product.stock,
+      name: product.name,
+      price: product.price,
+      image: product.images,
+      quantity: product.cart_item.quantity,
+    };
   });
 
-  // await OrderItem.bulkCreate(orderItems);
+  await OrderItem.bulkCreate(cartItems);
 
-  // res.send(orderItems);
+  for (let i = 0; i < cartItems.length; i++) {
+    const item = cartItems[i];
+    await Product.update(
+      { stock: item.stock - item.quantity },
+      {
+        where: {
+          id: item.productId,
+        },
+      }
+    );
+  }
+
+  await Cart.destroy({
+    where: {
+      userId,
+    },
+  });
+
+  try {
+    await transporter.sendMail({
+      from: '"BBT Bebidas" <bbtbedidas@gmail.com>',
+      to: `${cart.user.email}`,
+      subject: "Orden registrada",
+      html: `
+      <h1>Hola, ${cart.user.name}</h1>
+      <h2>Tu orden ha sido registrada con los siguientes productos:</h2>
+      ${contentEmail(cartItems)}
+      <h1>PRECIO TOTAL: $${totalAmount}</h1>
+      `,
+    });
+  } catch (error) {
+    emailStatus = error;
+    console.log(emailStatus);
+  }
+
+  res.status(201).send({ order, cartItems });
 });
 
 module.exports = router;
