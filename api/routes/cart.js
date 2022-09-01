@@ -34,19 +34,21 @@ cart.post("/", async (req, res) => {
     return res.status(400).send("The quantity must be higher than zero.");
   }
 
-  let [cart, created] = await Cart.findOrCreate({ where: { userId } });
+  let cart = await Cart.findOrCreate({ where: { userId } });
 
   let product = await CartItem.findOne({
-    where: { cartId: cart.id, productId },
+    where: { cartId: cart[0].id, productId },
   });
 
   if (product === null) {
-    CartItem.create({ cartId: cart.id, productId, quantity });
+    CartItem.create({ cartId: cart[0].id, productId, quantity });
   } else {
-    CartItem.update({ quantity }, { where: { cartId: cart.id, productId } });
+    CartItem.update(
+      { quantity: quantity },
+      { where: { cartId: cart[0].id, productId } }
+    );
   }
-
-  res.status(200).send();
+  res.sendStatus(200);
 });
 
 // Route to delete cartItems and to delete the cart if it has no remaining cartItems.

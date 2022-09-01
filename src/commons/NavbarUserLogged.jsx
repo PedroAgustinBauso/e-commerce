@@ -48,6 +48,12 @@ const NavbarUserLogged = ({ user }) => {
     navigate("/admin/products");
   };
 
+  const handleManageCategories = () => {
+    //Lleva al componente para Agregar o Editar un producto
+    setAnchorEl(null);
+    navigate("/admin/category");
+  };
+
   const handleOrders = () => {
     //Lleva al componente para que el usuario vea su historial de compras.
     setAnchorEl(null);
@@ -78,7 +84,10 @@ const NavbarUserLogged = ({ user }) => {
           <>
             {" "}
             <MenuItem onClick={handleManageUsers}>Users</MenuItem>
-            <MenuItem onClick={handleManageProducts}>Products</MenuItem>{" "}
+            <MenuItem onClick={handleManageProducts}>Products</MenuItem>
+            <MenuItem onClick={handleManageCategories}>
+              Categories
+            </MenuItem>{" "}
           </>
         ) : (
           <MenuItem onClick={handleOrders}>Orders</MenuItem>

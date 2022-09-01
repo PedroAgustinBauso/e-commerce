@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -21,28 +22,23 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
-  const categoriesList = [
-    "Vinos",
-    "Cervezas",
-    "Espumantes",
-    "Licores",
-    "Gin",
-    "Vodka",
-    "Ron",
-    "Aperitivos",
-    "Whisky",
-    "Otros",
-  ];
+  const [categoriesList, setCategoriesList] = React.useState([]);
+
+  React.useEffect(() => {
+    axios.get(`http://localhost:3001/api/category`).then((res) => {
+      setCategoriesList(res.data);
+    });
+  }, []);
 
   function getCategoryPages() {
-    let categories = []
+    let categories = [];
     categoriesList.forEach((element) => {
       categories.push({
-        page: element,
+        page: element.name,
         onClickHandler: function () {
           handleCloseCategories();
           handleCloseNavMenu();
-          navigate(`/${element.toLocaleLowerCase()}`);
+          navigate(`/${element.name.toLocaleLowerCase()}`);
         },
       });
     });
@@ -178,24 +174,23 @@ const Navbar = () => {
             </Menu>
           </Box>
 
-          
           {user.name ? (
             <NavbarUserLogged user={user} />
           ) : (
             <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "flex" } }}>
-            <MenuItem>
-              <Link
-                to="/login"
-                style={{
-                  textDecoration: "none",
-                  color: "white",
-                  textTransform: "uppercase",
-                }}
-              >
-                <Typography textAlign="center">Login</Typography>
-              </Link>
-            </MenuItem>
-          </Box>
+              <MenuItem>
+                <Link
+                  to="/login"
+                  style={{
+                    textDecoration: "none",
+                    color: "white",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  <Typography textAlign="center">Login</Typography>
+                </Link>
+              </MenuItem>
+            </Box>
           )}
         </Toolbar>
       </Container>
