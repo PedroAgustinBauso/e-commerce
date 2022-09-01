@@ -33,4 +33,5 @@ Categories.hasMany(Product)
 
 */
 
-module.exports = { Product, User, Cart, Category, CartItem, OrderItem,Order };
+module.exports = { Product, User, Cart, Category, CartItem, OrderItem, Order };
+
