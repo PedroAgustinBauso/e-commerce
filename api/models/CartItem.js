@@ -13,4 +13,7 @@ CartItem.init(
   { sequelize: db, modelName: "cart_item" }
 );
 
+
+
+
 module.exports = CartItem;

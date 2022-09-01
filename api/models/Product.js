@@ -25,6 +25,7 @@ Product.init(
     stock: {
       type: DataTypes.INTEGER,
     },
+    
   },
   { sequelize: db, modelName: "product" }
 );
