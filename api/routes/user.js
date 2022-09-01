@@ -36,7 +36,7 @@ router.post("/login", (req, res) => {
       };
 
       const token = generateToken(payload);
-
+      console.log("TOKEN", token)
       res.cookie("token", token);
       // res.cookie("PROBANDO", "probandooooooooo");
 

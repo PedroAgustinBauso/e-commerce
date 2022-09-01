@@ -21,6 +21,9 @@ function App() {
       setCategoriesList(res.data);
     });
   }, [])
+import UserOrders from "./components/UserOrders";
+
+function App() {
 
   function getCategoryRoutes() {
     let categoryRoutes = categoriesList.map((categoryListItem) => (
@@ -46,6 +49,7 @@ function App() {
         <Route path="/admin/products" element={<AdminProducts />} />
         <Route path="/admin/users" element={<AdminUsers/>} />
         <Route path="/admin/category" element={<AdminCategories/>}/>
+        <Route path="/user/orders" element={<UserOrders />} />
       </Routes>
     </div>
   );
