@@ -62,20 +62,22 @@ const Cart = () => {
           <Item>{`TOTAL $ ${totalCart}`}</Item>
         </Stack>
       </Box>
-      <Button
-        variant="contained"
-        onClick={() => {
-          finalizarCompra(user, dispatch, navigate);
-        }}
-      >
-        Finalizar compra
-      </Button>
-      <Link to="/">
-        <Button variant="outlined">Seguir comprando</Button>
-      </Link>
-      <Button variant="outlined" onClick={clearCart}>
-        Limpiar carrito
-      </Button>
+      <Box display="flex" justifyContent="center" margin>
+        <Button
+          variant="contained"
+          onClick={() => {
+            finalizarCompra(user, dispatch, navigate);
+          }}
+        >
+          Finalizar compra
+        </Button>
+        <Link to="/">
+          <Button variant="outlined">Seguir comprando</Button>
+        </Link>
+        <Button variant="outlined" onClick={clearCart}>
+          Limpiar carrito
+        </Button>
+      </Box>
     </div>
   );
 };

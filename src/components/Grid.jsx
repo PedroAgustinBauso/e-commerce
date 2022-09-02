@@ -18,7 +18,7 @@ const Grid = ({ category }) => {
         }`
       )
       .then((response) => {
-        setProductList(response.data);
+        setProductList(response.data.filter((p) => p.stock > 0));
       })
       .catch((error) => {
         console.log("entré por error");
