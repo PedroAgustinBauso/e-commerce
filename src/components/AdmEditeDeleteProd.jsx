@@ -13,7 +13,7 @@ import {MenuItem} from "@mui/material";
 import axios from "axios";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { red } from "@mui/material/colors";
-import ModalEditProd from "./ModalEditProd";
+import ModalEditProd from "../commons/Modals/ModalEditProd";
 
 
 export default function AdmEditeDeleteProd() {
@@ -83,9 +83,9 @@ export default function AdmEditeDeleteProd() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
+            {rows.map((row,i) => (
               <TableRow
-                key={row.name}
+                key={i}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
@@ -114,7 +114,7 @@ export default function AdmEditeDeleteProd() {
           </TableBody>
         </Table>
       </TableContainer>
-      <ModalEditProd open={open} handleClose={handleClose} onSubmit={onSubmit} indiv={indiv} />
+      <ModalEditProd open={open} handleClose={handleClose} onSubmit={onSubmit} indiv={indiv} productos={productos} />
     </>
   );
 }
