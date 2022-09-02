@@ -52,12 +52,12 @@ const NavbarUserLogged = ({ user }) => {
     //Lleva al componente para Agregar o Editar un producto
     setAnchorEl(null);
     navigate("/admin/products/edit");
+  };
 
   const handleManageCategories = () => {
     //Lleva al componente para Agregar o Editar un producto
     setAnchorEl(null);
     navigate("/admin/category");
-
   };
 
   const handleOrders = () => {
