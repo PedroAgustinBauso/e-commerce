@@ -2,7 +2,6 @@ import * as React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -16,6 +15,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import { sendLogoutRequest } from "../store/user";
 import NavbarUserLogged from "../commons/NavbarUserLogged";
+import CssBaseline from '@mui/material/CssBaseline';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -70,8 +70,9 @@ const Navbar = () => {
   /*** End Dropdown categories functionality ***/
 
   return (
-    <AppBar position="static">
+    <AppBar position="sticky">
       <Container maxWidth="xl">
+        <CssBaseline/>
         <Toolbar disableGutters>
           <Typography
             variant="h6"

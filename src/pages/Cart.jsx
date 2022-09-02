@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { removeAllItems } from "../store/cart";
 import axios from "axios";
 import { finalizarCompra } from "../utils/finalizarCombra";
+import { useNavigate } from "react-router-dom";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -22,6 +23,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Cart = () => {
+  const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -41,7 +43,15 @@ const Cart = () => {
 
   return (
     <div>
-      <h1>Mi carrito</h1>
+      <h1
+        style={{
+          textTransform: "capitalize",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        Mi carrito
+      </h1>
       {cart.length > 0
         ? cart.map((product, i) => {
             return <CartItem key={i} product={product} />;
@@ -52,20 +62,22 @@ const Cart = () => {
           <Item>{`TOTAL $ ${totalCart}`}</Item>
         </Stack>
       </Box>
-      <Button
-        variant="contained"
-        onClick={() => {
-          finalizarCompra(user);
-        }}
-      >
-        Finalizar compra
-      </Button>
-      <Link to="/">
-        <Button variant="outlined">Seguir comprando</Button>
-      </Link>
-      <Button variant="outlined" onClick={clearCart}>
-        Limpiar carrito
-      </Button>
+      <Box display="flex" justifyContent="center" margin>
+        <Button
+          variant="contained"
+          onClick={() => {
+            finalizarCompra(user, dispatch, navigate);
+          }}
+        >
+          Finalizar compra
+        </Button>
+        <Link to="/">
+          <Button variant="outlined">Seguir comprando</Button>
+        </Link>
+        <Button variant="outlined" onClick={clearCart}>
+          Limpiar carrito
+        </Button>
+      </Box>
     </div>
   );
 };
