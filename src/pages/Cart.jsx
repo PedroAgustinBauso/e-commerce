@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { removeAllItems } from "../store/cart";
 import axios from "axios";
+import { finalizarCompra } from "../utils/finalizarCombra";
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body1,
@@ -58,7 +60,14 @@ const Cart = () => {
           <Item>{`TOTAL $ ${totalCart}`}</Item>
         </Stack>
       </Box>
-      <Button variant="contained">Finalizar compra</Button>
+      <Button
+        variant="contained"
+        onClick={() => {
+          finalizarCompra(user);
+        }}
+      >
+        Finalizar compra
+      </Button>
       <Link to="/">
         <Button variant="outlined">Seguir comprando</Button>
       </Link>

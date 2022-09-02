@@ -21,9 +21,11 @@ router.post("/:userId", async (req, res) => {
     include: [{ model: Product }, { model: User }],
   });
 
-  cart.products.forEach((product) => {
-    totalAmount += product.price * product.cart_item.quantity;
-  });
+  if (cart.product.length > 0) {
+    cart.products.forEach((product) => {
+      totalAmount += product.price * product.cart_item.quantity;
+    });
+  }
 
   let order = await Order.create({
     userId,
