@@ -21,11 +21,15 @@ router.post("/:userId", async (req, res) => {
     include: [{ model: Product }, { model: User }],
   });
 
-  if (cart.product.length > 0) {
-    cart.products.forEach((product) => {
-      totalAmount += product.price * product.cart_item.quantity;
-    });
+  if (cart.products.length === 0) {
+    res
+      .status(400)
+      .send("No se puede ejecutar la compra, no hay items en el carrito");
   }
+
+  cart.products.forEach((product) => {
+    totalAmount += product.price * product.cart_item.quantity;
+  });
 
   let order = await Order.create({
     userId,

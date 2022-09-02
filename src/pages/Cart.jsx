@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { removeAllItems } from "../store/cart";
 import axios from "axios";
 import { finalizarCompra } from "../utils/finalizarCombra";
+import { useNavigate } from "react-router-dom";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -22,6 +23,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Cart = () => {
+  const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -63,7 +65,7 @@ const Cart = () => {
       <Button
         variant="contained"
         onClick={() => {
-          finalizarCompra(user);
+          finalizarCompra(user, dispatch, navigate);
         }}
       >
         Finalizar compra
