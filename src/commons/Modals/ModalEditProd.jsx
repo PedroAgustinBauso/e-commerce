@@ -6,6 +6,7 @@ import Modal from '@mui/material/Modal';
 import { TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
+import AlertMessage from '../AlertMessage';
 
 
 const style = {
@@ -20,12 +21,11 @@ const style = {
   p: 4,
 };
 
-export default function ModalEditProd({handleOpen,open,handleClose,indiv, onSubmit}) {
-    
+export default function ModalEditProd({handleOpen,open,handleClose, onSubmit, productos}) {
+
     const {
         register,
         handleSubmit,
-        reset,
         formState: { errors },
       } = useForm();
 
@@ -48,7 +48,9 @@ export default function ModalEditProd({handleOpen,open,handleClose,indiv, onSubm
                     id="name"
                     label="name"
                     autoFocus
-                    {...register("name")}
+                    {...register("name",{
+                      required: "First name is required.",
+                    })}
                     error={!!errors?.name}
                     helperText={errors?.name ? errors.name.message : null}
                     />
@@ -61,6 +63,7 @@ export default function ModalEditProd({handleOpen,open,handleClose,indiv, onSubm
                     autoComplete="prices"
                     {...register("price",{
                         valueAsNumber: true,
+                        required: "Price is required.",
                       })}
                     error={!!errors?.price}
                     helperText={errors?.price ? errors.price.message : null}
@@ -73,52 +76,11 @@ export default function ModalEditProd({handleOpen,open,handleClose,indiv, onSubm
                     id="stock"
                     {...register("stock",{
                         valueAsNumber: true,
+                        required: "Stock is required.",
                       })}
                     error={!!errors?.stock}
                     helperText={errors?.stock ? errors.stock.message : null}
                     />
-
-                {/* <TextField
-                    fullWidth
-                    id="categoryName"
-                    label="Category"
-                    type='number'
-                    autoComplete="categoryName"
-                    {...register("categoryId",{
-                        valueAsNumber: true,
-                      } )}
-                    error={!!errors?.categoryName}
-                    helperText={errors?.categoryName ? errors.categoryName.message : null}
-                    />
-
-                <TextField
-                    fullWidth
-                    id="description"
-                    label="Description"
-                    autoComplete="description"
-                    {...register("description")}
-                    error={!!errors?.description}
-                    helperText={errors?.description ? errors.description.message : null}
-                    />
-
-                <TextField
-                    fullWidth
-                    id="brand"
-                    label="Brand"
-                    autoComplete="brand"
-                    {...register("brand")}
-                    error={!!errors?.brand}
-                    helperText={errors?.brand ? errors.brand.message : null}
-                    />
-
-                <TextField
-                    fullWidth
-                    id="Url"
-                    label="Image Url"
-                    {...register("images")}
-                    error={!!errors?.images}
-                    helperText={errors?.images ? errors.images.message : null}
-                    /> */}
                 <Button
                 type="submit"
                 fullWidth
@@ -129,7 +91,17 @@ export default function ModalEditProd({handleOpen,open,handleClose,indiv, onSubm
                 </Button>                               
             </form>
         </Box>
-      </Modal>
+        </Modal>
+        {productos && (
+            <AlertMessage
+              type={productos}
+              message={
+                productos === "success"
+                  ? `Producto editado`
+                  : `Por favor verificar datos ingresados`
+              }
+            />
+          )}
     </div>
   );
 }
