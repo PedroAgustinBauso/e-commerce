@@ -73,13 +73,13 @@ export default function AdmEditeDeleteProd() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Name</TableCell>
-              <TableCell align="center">Price</TableCell>
+              <TableCell>Nombre</TableCell>
+              <TableCell align="center">Precio</TableCell>
               <TableCell align="center">Stock&nbsp;</TableCell>
-              <TableCell align="center">Category&nbsp;</TableCell>
-              <TableCell align="center">Description&nbsp;</TableCell>
-              <TableCell align="center">Brand&nbsp;</TableCell>
-              <TableCell align="center">Image&nbsp;</TableCell>
+              <TableCell align="center">Categoría&nbsp;</TableCell>
+              <TableCell align="center">Descripción&nbsp;</TableCell>
+              <TableCell align="center">Marca&nbsp;</TableCell>
+              <TableCell align="center">Imagen&nbsp;</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

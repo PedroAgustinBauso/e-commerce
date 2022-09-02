@@ -40,17 +40,25 @@ export default function CartItem({ product }) {
   };
 
   const removeOneItem = () => {
-    const remove = {
-      productId: product.productId,
-      userId: user.userId,
-      quantity: product.quantity,
-    };
-    if (user.userId) {
-      axios
-        .post("http://localhost:3001/api/cart", remove)
-        .then((res) => dispatch(removeItem(product)));
+    const { img, name, price, productId, stock, total, description } = product;
+
+    if (product.quantity === 1) {
+      deleteCartItem();
     } else {
-      dispatch(removeItem(product));
+      if (user.userId) {
+        axios.post("http://localhost:3001/api/cart", {
+          img,
+          name,
+          price,
+          productId,
+          quantity: product.quantity - 1,
+          stock,
+          total,
+          description,
+          userId: user.userId,
+        });
+        dispatch(removeItem(product));
+      }
     }
   };
 

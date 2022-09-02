@@ -54,6 +54,29 @@ cart.post("/", async (req, res) => {
 });
 
 
+//Si hay productos en el carrito quiero tenerlos en la db del usuario
+cart.post("/:userId", async (req, res) => {
+  const { userId } = req.params;
+  if (req.body.length > 0) {
+    req.body.forEach(async ({ productId, quantity }) => {
+      let cart = await Cart.findOrCreate({ where: { userId } });
+
+      let product = await CartItem.findOne({
+        where: { cartId: cart[0].id, productId },
+      });
+      if (product === null) {
+        CartItem.create({ cartId: cart[0].id, productId, quantity });
+      } else {
+        CartItem.update(
+          { quantity: quantity },
+          { where: { cartId: cart[0].id, productId } }
+        );
+      }
+    })
+    res.sendStatus(201);
+  }
+});
+
 // Route to delete cartItems and to delete the cart if it has no remaining cartItems.
 cart.delete("/:userId/:productId", async (req, res) => {
   const { userId, productId } = req.params;

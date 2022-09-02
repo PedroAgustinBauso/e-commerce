@@ -32,13 +32,12 @@ router.post("/login", (req, res) => {
         name: user.name,
         lastname: user.lastname,
         is_admin: user.is_admin,
-        id: user.id,
+        id : user.id,
       };
 
       const token = generateToken(payload);
-      console.log("TOKEN", token)
+
       res.cookie("token", token);
-      // res.cookie("PROBANDO", "probandooooooooo");
 
       res.send(payload);
     });

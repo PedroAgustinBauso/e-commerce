@@ -13,16 +13,16 @@ import AdmEditeDeleteProd from "./components/AdmEditeDeleteProd";
 import AdminCategories from "./components/AdminCategories";
 import axios from "axios";
 import UserOrders from "./components/UserOrders";
-
+import OrderDetail from "./components/OrderDetail";
 
 function App() {
-  const [categoriesList, setCategoriesList] = useState([])
+  const [categoriesList, setCategoriesList] = useState([]);
 
   useEffect(() => {
     axios.get(`http://localhost:3001/api/category`).then((res) => {
       setCategoriesList(res.data);
     });
-  }, [])
+  }, []);
 
   function getCategoryRoutes() {
     let categoryRoutes = categoriesList.map((categoryListItem) => (
@@ -46,10 +46,11 @@ function App() {
         <Route path="/product/:id" element={<SingleProductView />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/admin/products" element={<AdminProducts />} />
-        <Route path="/admin/users" element={<AdminUsers/>} />
-        <Route path="/admin/products/edit" element={<AdmEditeDeleteProd/>} />
-        <Route path="/admin/category" element={<AdminCategories/>}/>
+        <Route path="/admin/users" element={<AdminUsers />} />
+        <Route path="/admin/products/edit" element={<AdmEditeDeleteProd />} />
+        <Route path="/admin/category" element={<AdminCategories />} />
         <Route path="/user/orders" element={<UserOrders />} />
+        <Route path="/user/orders/:id" element={<OrderDetail />} />
       </Routes>
     </div>
   );

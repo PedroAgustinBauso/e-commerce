@@ -21,6 +21,13 @@ router.post("/:userId", async (req, res) => {
     include: [{ model: Product }, { model: User }],
   });
 
+  if (!cart) {
+    res
+      .status(400)
+      .send("No se puede ejecutar la compra, no hay items en el carrito");
+    return;
+  }
+
   cart.products.forEach((product) => {
     totalAmount += product.price * product.cart_item.quantity;
   });
@@ -46,8 +53,11 @@ router.post("/:userId", async (req, res) => {
 
   for (let i = 0; i < cartItems.length; i++) {
     const item = cartItems[i];
+
+    let newStock = item.stock - item.quantity;
+
     await Product.update(
-      { stock: item.stock - item.quantity },
+      { stock: newStock },
       {
         where: {
           id: item.productId,
