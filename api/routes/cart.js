@@ -13,17 +13,17 @@ cart.get("/:userId", async (req, res) => {
     },
   });
   if (cart) {
-    let result = cart.products.map((item) => {
-      return {
-        id: item.id,
-        name: item.name,
-        description: item.description,
-        price: item.price,
-        image: item.images,
-        quantity: item.cart_item.quantity,
-      };
-    });
-    res.send(result);
+  let result = cart.products.map((item) => {
+    return {
+      id: item.id,
+      name: item.name,
+      description: item.description,
+      price: item.price,
+      image: item.images,
+      quantity: item.cart_item.quantity,
+    };
+  });
+  res.send(result);
   } else {
     res.sendStatus(204);
   }
@@ -32,6 +32,7 @@ cart.get("/:userId", async (req, res) => {
 // Route to create a cart, add a new cart item or edit the quantity of an existing one.
 cart.post("/", async (req, res) => {
   const { userId, productId, quantity } = req.body;
+  console.log(quantity)
   if (quantity <= 0) {
     return res.status(400).send("The quantity must be higher than zero.");
   }

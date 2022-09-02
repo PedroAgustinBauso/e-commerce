@@ -81,14 +81,14 @@ const NavbarUserLogged = ({ user }) => {
         onClose={handleClose}
       >
         {user.is_admin ? (
-          <>
+          <div>
             {" "}
             <MenuItem onClick={handleManageUsers}>Users</MenuItem>
             <MenuItem onClick={handleManageProducts}>Products</MenuItem>
             <MenuItem onClick={handleManageCategories}>
               Categories
             </MenuItem>{" "}
-          </>
+          </div>
         ) : (
           <MenuItem onClick={handleOrders}>Orders</MenuItem>
         )}
