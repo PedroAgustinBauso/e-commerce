@@ -53,6 +53,7 @@ cart.post("/", async (req, res) => {
   res.sendStatus(200);
 });
 
+
 //Si hay productos en el carrito quiero tenerlos en la db del usuario
 cart.post("/:userId", async (req, res) => {
   const { userId } = req.params;
@@ -74,7 +75,6 @@ cart.post("/:userId", async (req, res) => {
     })
     res.sendStatus(201);
   }
-  
 });
 
 // Route to delete cartItems and to delete the cart if it has no remaining cartItems.

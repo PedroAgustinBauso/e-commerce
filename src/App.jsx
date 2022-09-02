@@ -9,9 +9,11 @@ import CartItem from "./components/CartItem";
 import Register from "./pages/Register";
 import AdminProducts from "./components/AdminProducts";
 import AdminUsers from "./components/AdminUsers";
+import AdmEditeDeleteProd from "./components/AdmEditeDeleteProd";
 import AdminCategories from "./components/AdminCategories";
 import axios from "axios";
 import UserOrders from "./components/UserOrders";
+
 
 function App() {
   const [categoriesList, setCategoriesList] = useState([])
@@ -45,6 +47,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/admin/products" element={<AdminProducts />} />
         <Route path="/admin/users" element={<AdminUsers/>} />
+        <Route path="/admin/products/edit" element={<AdmEditeDeleteProd/>} />
         <Route path="/admin/category" element={<AdminCategories/>}/>
         <Route path="/user/orders" element={<UserOrders />} />
       </Routes>
