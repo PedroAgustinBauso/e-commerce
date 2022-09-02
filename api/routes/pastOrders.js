@@ -6,7 +6,10 @@ const { Order, Product } = require("../models");
 router.get("/:userId", validateAuth, (req, res) => {
   Order.findAll({ where: { userId: req.params.userId } })
     .then((result) => res.send(result))
-    .catch(() => res.sendStatus(401));
+    .catch((error) => {
+      console.log("error", error);
+      res.status(500).send(error);
+    });
 });
 
 router.get("/detail/:orderId", validateAuth, (req, res) => {
@@ -19,8 +22,8 @@ router.get("/detail/:orderId", validateAuth, (req, res) => {
     },
   })
     .then((result) => res.send(result))
-    .catch(() => {
-      res.sendStatus(401);
+    .catch((error) => {
+      res.status(500).send(error);
     });
 });
 

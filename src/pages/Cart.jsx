@@ -27,7 +27,7 @@ const Cart = () => {
   const totalCart = cart.reduce((acumulador, item) => {
     return acumulador + item.total;
   }, 0);
-  
+
   const clearCart = async () => {
     if (user.userId) {
       await axios.delete(`http://localhost:3001/api/cart/${user.userId}`);
@@ -39,7 +39,15 @@ const Cart = () => {
 
   return (
     <div>
-      <h1>Mi carrito</h1>
+      <h1
+        style={{
+          textTransform: "capitalize",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        Mi carrito
+      </h1>
       {cart.length > 0
         ? cart.map((product, i) => {
             return <CartItem key={i} product={product} />;

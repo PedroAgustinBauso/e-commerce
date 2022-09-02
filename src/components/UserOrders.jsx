@@ -43,16 +43,16 @@ const UserOrders = () => {
           justifyContent: "center",
         }}
       >
-        Orders
+        Órdenes
       </h1>
       <Box display="flex" justifyContent="center" alignItems="center">
         <TableContainer sx={{ maxWidth: 700 }} component={Paper}>
           <Table sx={{ maxWidth: 700 }} size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
-                <TableCell align="center">Date</TableCell>
-                <TableCell align="center">Price</TableCell>
-                <TableCell align="center">Actions</TableCell>
+                <TableCell align="center">Fecha</TableCell>
+                <TableCell align="center">Precio</TableCell>
+                <TableCell align="center">Ver Detalle</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

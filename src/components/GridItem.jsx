@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "../utils/addToCart";
+import { Box } from "@mui/material";
 
 const GridItem = ({ product }) => {
   const dispatch = useDispatch();
@@ -28,7 +29,14 @@ const GridItem = ({ product }) => {
   };
 
   return (
-    <Card sx={{ maxWidth: 250 }}>
+    <Card
+      sx={{
+        maxWidth: 250,
+        ":hover": {
+          boxShadow: 10,
+        },
+      }}
+    >
       <Link to={`/product/${product.id}`} style={{ textDecoration: "none" }}>
         <CardMedia
           component="img"
@@ -50,11 +58,13 @@ const GridItem = ({ product }) => {
         </CardContent>
       </Link>
       <Link to="/cart">
+        <Box display="flex" justifyContent="right" margin >
         <Button
           variant="contained"
           startIcon={<AddShoppingCartIcon />}
           onClick={addItemToCart}
         ></Button>
+        </Box>
       </Link>
     </Card>
   );

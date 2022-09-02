@@ -89,11 +89,11 @@ const NavbarUserLogged = ({ user }) => {
         {user.is_admin ? (
           <>
             {" "}
-            <MenuItem onClick={handleManageUsers}>Users</MenuItem>
-            <MenuItem onClick={handleManageProducts}>Products</MenuItem>
-            <MenuItem onClick={handleManageProductsEdit}>Edite/Delete</MenuItem>
+            <MenuItem onClick={handleManageUsers}>Usuarios</MenuItem>
+            <MenuItem onClick={handleManageProducts}>Productos</MenuItem>
+            <MenuItem onClick={handleManageProductsEdit}>Editar/Eliminar</MenuItem>
             <MenuItem onClick={handleManageCategories}>
-              Categories
+              Categorías
             </MenuItem>{" "}
           </>
         ) : (

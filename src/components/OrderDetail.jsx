@@ -77,7 +77,15 @@ const OrderDetail = () => {
 
   return (
     <div>
-      <h1>Detalle de la orden</h1>
+      <h1
+        style={{
+          textTransform: "capitalize",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        Detalle de la orden
+      </h1>
       {order.products ? (
         <>
           {order.products.map((product, i) => {
