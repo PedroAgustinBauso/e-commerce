@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { removeAllItems } from "../store/cart";
 import axios from "axios";
+import { finalizarCompra } from "../utils/finalizarCombra";
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body1,
@@ -27,7 +29,7 @@ const Cart = () => {
   const totalCart = cart.reduce((acumulador, item) => {
     return acumulador + item.total;
   }, 0);
-  
+
   const clearCart = async () => {
     if (user.userId) {
       await axios.delete(`http://localhost:3001/api/cart/${user.userId}`);
@@ -50,7 +52,14 @@ const Cart = () => {
           <Item>{`TOTAL $ ${totalCart}`}</Item>
         </Stack>
       </Box>
-      <Button variant="contained">Finalizar compra</Button>
+      <Button
+        variant="contained"
+        onClick={() => {
+          finalizarCompra(user);
+        }}
+      >
+        Finalizar compra
+      </Button>
       <Link to="/">
         <Button variant="outlined">Seguir comprando</Button>
       </Link>

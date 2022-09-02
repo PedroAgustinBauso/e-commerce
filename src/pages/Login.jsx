@@ -17,6 +17,7 @@ import {
   Container,
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import axios from "axios";
 
 export default function Login() {
   // inicio proceso de login
@@ -25,7 +26,6 @@ export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
-
 
   // configuracion de react-hook-form
   const {
@@ -40,15 +40,16 @@ export default function Login() {
     dispatch(sendLoginRequest(data))
       .then(({ payload }) => {
         console.log("PAYLOAD ES", payload);
-        console.log(cart);
         if (payload) {
           localStorage.setItem("cart", JSON.stringify([]));
           setLoginStatus("success");
-          if(cart.length > 0){
-            
+          if (cart.length > 0) {
+            console.log("HAY PRODUCTOS EN EL CARRITO", cart);
+            console.log("user id", payload.userId)
+            axios.post(`http://localhost:3001/api/cart/${payload.userId}`, cart)
+            .then(res => console.log(res))
           }
           setTimeout(() => navigate("/"), 1000);
-
         } else {
           setLoginStatus("error");
           setTimeout(() => setLoginStatus(""), 1000);
