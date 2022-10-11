@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import CartItem from "../components/CartItem";
+import CartItem from "./CartItem";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
