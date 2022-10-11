@@ -13,6 +13,7 @@ import SportsBarIcon from '@mui/icons-material/SportsBar';
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import AlertMessage from "../commons/AlertMessage";
+import { MenuItem } from "@mui/material";
 
 const AdminProducts = () => {
   const navigate = useNavigate();
@@ -40,6 +41,22 @@ const AdminProducts = () => {
         }
       })
       .catch(() => navigate("/404"));
+  };
+
+  const [categoriesList, setCategoriesList] = React.useState([]);
+  const [categorie, setCategorie] = React.useState("");
+
+  React.useEffect(() => {
+    axios.get(`http://localhost:3001/api/category`).then((res) => {
+      setCategoriesList(res.data);
+    });
+  }, []);
+
+  console.log(categoriesList)
+  console.log(categorie)
+
+  const handleChange = (event) => {
+    setCategorie(event.target.value);
   };
 
   return (
@@ -106,14 +123,22 @@ const AdminProducts = () => {
                 <TextField
                   fullWidth
                   id="categoryName"
-                  label="categoryName"
-                  autoComplete="categoryName"
+                  label="Category name"
+                  select
+                  
+                  onChange={handleChange}
                   {...register("categoryName", {
                     required: "categoryName is required.",
                   })}
                   error={!!errors?.categoryName}
                   helperText={errors?.categoryName ? errors.categoryName.message : null}
-                />
+                >
+                {categoriesList.map((option) => (
+                    <MenuItem key={option.id} value={option.name}>
+                      {option.name}
+                    </MenuItem>
+                  ))}
+                  </TextField>
               </Grid>
               <Grid item xs={12} >
                 <TextField
