@@ -66,7 +66,7 @@ export default function AdmEditeDeleteProd() {
       })
       .catch(() =>console.log('hubo un error'));
   };
-
+  
   return (
     <>
       <TableContainer component={Paper}>

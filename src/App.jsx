@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Login from "./pages/Login";
 import SingleProductView from "./components/SingleProduct";
 import { Routes, Route } from "react-router-dom";
-import Grid from "./components/Grid";
+import Grid from "./components/Homepage/Grid"
 import Cart from "./pages/Cart";
 import CartItem from "./components/CartItem";
 import Register from "./pages/Register";
