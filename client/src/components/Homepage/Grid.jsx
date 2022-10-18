@@ -41,7 +41,6 @@ const Grid = ({ category }) => {
   return (
     <>
       <Carrousel />
-      <h1 style={{paddingLeft:"20px"}}>Nuestras bebidas</h1>
       <div>
         <h1 className={classes.gridTitle}>
           {category === "none" ? "" : category}
